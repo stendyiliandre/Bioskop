@@ -8,9 +8,13 @@ package tiket;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -63,26 +67,92 @@ public class Home extends JFrame{
         movie1 = new JLabel();
         movie1.setBounds(25,0,300,300);
         movie1.setIcon(new ImageIcon(resizeImage("home/cars.jpg", 250, 250)));
+        movie1.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                try {
+                    DetailHome1();
+                } catch (IOException ex) {
+                    Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+        });
        
         movie2 = new JLabel();       
         movie2.setBounds(325,0,300,300);
         movie2.setIcon(new ImageIcon(resizeImage("home/kingsman.jpg", 250, 250)));
-       
+        movie2.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                try {
+                    DetailHome2();
+                } catch (IOException ex) {
+                    Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+        });
+        
         movie3 = new JLabel();  
         movie3.setBounds(625,0,300,300);
         movie3.setIcon(new ImageIcon(resizeImage("home/dispicable.jpg", 250, 250)));
+        movie3.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                try {
+                    DetailHome3();
+                } catch (IOException ex) {
+                    Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+        });
         
         movie4 = new JLabel();  
         movie4.setBounds(25,0,300,300);
         movie4.setIcon(new ImageIcon(resizeImage("home/susahsinyal.jpg", 250, 250)));
+        movie4.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                try {
+                    DetailHome4();
+                } catch (IOException ex) {
+                    Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+        });
         
         movie5 = new JLabel();  
         movie5.setBounds(325,0,300,300);
         movie5.setIcon(new ImageIcon(resizeImage("home/spiderman.jpg", 250, 250)));
+        movie5.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                try {
+                    DetailHome2();
+                } catch (IOException ex) {
+                    Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+        });
         
         movie6 = new JLabel();  
         movie6.setBounds(625,0,300,300);
         movie6.setIcon(new ImageIcon(resizeImage("home/bossbaby.jpg", 250, 250)));
+        movie6.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                try {
+                    DetailHome6();
+                } catch (IOException ex) {
+                    Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+        });
         
         text1 = new JLabel("Cars");
         text1.setBounds(120, 0, 300, 25);
@@ -132,6 +202,36 @@ public class Home extends JFrame{
             ex.printStackTrace(System.err);
         }
         return dimg;
+    }
+    
+    public void DetailHome1() throws IOException{
+        new DetailHome1().setVisible(true);
+        this.setVisible(false);
+    }
+    
+    public void DetailHome2() throws IOException{
+        new DetailHome2().setVisible(true);
+        this.setVisible(false);
+    }
+    
+    public void DetailHome3() throws IOException{
+        new DetailHome3().setVisible(true);
+        this.setVisible(false);
+    }
+    
+    public void DetailHome4() throws IOException{
+        new DetailHome4().setVisible(true);
+        this.setVisible(false);
+    }
+    
+    public void DetailHome5() throws IOException{
+        new DetailHome5().setVisible(true);
+        this.setVisible(false);
+    }
+    
+    public void DetailHome6() throws IOException{
+        new DetailHome6().setVisible(true);
+        this.setVisible(false);
     }
     
     JPanel pnlPanel1;
