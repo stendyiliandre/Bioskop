@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -33,7 +34,7 @@ public class Home extends JFrame{
 
     private void initComponents() throws IOException {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        this.setSize(900,700);
+        this.setSize(900,720);
         this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(null);
         this.setTitle("Home");
@@ -59,7 +60,7 @@ public class Home extends JFrame{
         add(pnlPanel3);
         
         pnlPanel4 = new JPanel();
-        pnlPanel4.setBounds(0,350,900,300);
+        pnlPanel4.setBounds(0,350,900,330);
         pnlPanel4.setLayout(null);
         pnlPanel4.setBackground(Color.white);
         add(pnlPanel4);
@@ -178,6 +179,22 @@ public class Home extends JFrame{
         text6.setBounds(710, 0, 300, 25);
         text6.setFont(new Font("Arial",Font.BOLD,14));
         
+        fb = new JButton("Food");
+        fb.setBounds(400, 290, 110, 25);
+        fb.setFont(new Font("Arial",Font.BOLD,14));
+        fb.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                try {
+                    FoodBeverage();
+                } catch (IOException ex) {
+                    Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+        });
+        pnlPanel4.add(fb);
+        
         pnlPanel1.add(text1);
         pnlPanel1.add(text2);
         pnlPanel1.add(text3);
@@ -192,6 +209,11 @@ public class Home extends JFrame{
         pnlPanel4.add(movie5);
         pnlPanel4.add(movie6);
       }
+    
+    public void FoodBeverage() throws IOException{
+        new FoodBeverage().setVisible(true);
+        this.setVisible(false);
+    }
 
     private Image resizeImage(String url,int x,int y) throws IOException{
         Image dimg = null;
@@ -250,7 +272,6 @@ public class Home extends JFrame{
     JLabel text4;
     JLabel text5;
     JLabel text6;
+    JButton fb;
 
 }
-
-
