@@ -64,6 +64,11 @@ public class DetailHome5 extends JFrame{
         txttgl.setFont(new Font("Arial",Font.BOLD,14));
         pnlPanel1.add(txttgl);
         
+        bks = new JLabel("PVJ");
+        bks.setBounds(400, 30, 100, 10);
+        bks.setFont(new Font("Arial",Font.BOLD,14));
+        pnlPanel1.add(bks);
+        
         tgl1 = new JButton("28-07-2018");
         tgl1.setBounds(320, 50, 110, 25);
         tgl1.setFont(new Font("Arial",Font.BOLD,14));
@@ -205,7 +210,7 @@ public class DetailHome5 extends JFrame{
         });
         pnlPanel1.add(tgl3);
         
-        bks1 = new JLabel("PVJ");
+        bks1 = new JLabel("2D");
         bks1.setBounds(320, 90, 100,25);
         bks1.setFont(new Font("Arial",Font.BOLD,14));
         pnlPanel1.add(bks1);
@@ -225,7 +230,7 @@ public class DetailHome5 extends JFrame{
         jam3.setFont(new Font("Arial",Font.BOLD,14));
         pnlPanel1.add(jam3);
         
-        bks2 = new JLabel("IP");
+        bks2 = new JLabel("3D");
         bks2.setBounds(320, 150, 100,25);
         bks2.setFont(new Font("Arial",Font.BOLD,14));
         pnlPanel1.add(bks2);
@@ -245,7 +250,7 @@ public class DetailHome5 extends JFrame{
         jam6.setFont(new Font("Arial",Font.BOLD,14));
         pnlPanel1.add(jam6);
         
-        bks3 = new JLabel("FCL");
+        bks3 = new JLabel("4D");
         bks3.setBounds(320, 210, 100,25);
         bks3.setFont(new Font("Arial",Font.BOLD,14));
         pnlPanel1.add(bks3);
@@ -265,7 +270,7 @@ public class DetailHome5 extends JFrame{
         jam9.setFont(new Font("Arial",Font.BOLD,14));
         pnlPanel1.add(jam9);
         
-        bks4 = new JLabel("PVJ");
+        bks4 = new JLabel("2D");
         bks4.setBounds(320, 90, 100,25);
         bks4.setFont(new Font("Arial",Font.BOLD,14));
         pnlPanel1.add(bks4);
@@ -285,7 +290,7 @@ public class DetailHome5 extends JFrame{
         jam12.setFont(new Font("Arial",Font.BOLD,14));
         pnlPanel1.add(jam12);
         
-        bks5 = new JLabel("IP");
+        bks5 = new JLabel("3D");
         bks5.setBounds(320, 150, 100,25);
         bks5.setFont(new Font("Arial",Font.BOLD,14));
         pnlPanel1.add(bks5);
@@ -305,7 +310,7 @@ public class DetailHome5 extends JFrame{
         jam15.setFont(new Font("Arial",Font.BOLD,14));
         pnlPanel1.add(jam15);
         
-        bks6 = new JLabel("FCL");
+        bks6 = new JLabel("4D");
         bks6.setBounds(320, 210, 100,25);
         bks6.setFont(new Font("Arial",Font.BOLD,14));
         pnlPanel1.add(bks6);
@@ -325,7 +330,7 @@ public class DetailHome5 extends JFrame{
         jam18.setFont(new Font("Arial",Font.BOLD,14));
         pnlPanel1.add(jam18);
         
-        bks7 = new JLabel("PVJ");
+        bks7 = new JLabel("2D");
         bks7.setBounds(320, 90, 100,25);
         bks7.setFont(new Font("Arial",Font.BOLD,14));
         pnlPanel1.add(bks7);
@@ -345,7 +350,7 @@ public class DetailHome5 extends JFrame{
         jam21.setFont(new Font("Arial",Font.BOLD,14));
         pnlPanel1.add(jam21);
         
-        bks8 = new JLabel("IP");
+        bks8 = new JLabel("3D");
         bks8.setBounds(320, 150, 100,25);
         bks8.setFont(new Font("Arial",Font.BOLD,14));
         pnlPanel1.add(bks8);
@@ -365,7 +370,7 @@ public class DetailHome5 extends JFrame{
         jam24.setFont(new Font("Arial",Font.BOLD,14));
         pnlPanel1.add(jam24);
         
-        bks9 = new JLabel("FCL");
+        bks9 = new JLabel("4D");
         bks9.setBounds(320, 210, 100,25);
         bks9.setFont(new Font("Arial",Font.BOLD,14));
         pnlPanel1.add(bks9);
@@ -455,6 +460,7 @@ public class DetailHome5 extends JFrame{
     JButton jam27;
     JButton home;
     JLabel txttgl;
+    JLabel bks;
     JButton tgl1;
     JButton tgl2;
     JButton tgl3;
