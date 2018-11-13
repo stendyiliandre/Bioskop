@@ -11,14 +11,14 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.AbstractButton;
-import javax.swing.Icon;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
-import javax.swing.UIManager;
 
 
 /**
@@ -26,27 +26,42 @@ import javax.swing.UIManager;
  * @author William Johann
  */
 public class LayoutStudio extends JFrame{
+    
     LayoutStudio(){
         initComponents();
+    }
+
+    public ArrayList<String> getarrayTemp() {
+        return arrayTemp;
+    }
+
+    public void setarrayTemp(ArrayList<String> arrayTemp) {
+        this.arrayTemp = arrayTemp;
     }
     
     private JPanel pnlPanel0;
     private JPanel pnlPanel1;
     private JPanel pnlPanel2;
     private JPanel pnlPanel3;
+    private JPanel pnlPanel4;
     private JPanel pnlBesar;
     private JLabel lblLayar;
+    private JButton next;
+    private JButton btnbuy;
+    public ArrayList<Kursi> arrayKursi;
+    public ArrayList <String>arrayTemp;
 
     private void initComponents(){
+        arrayKursi = new ArrayList<>();
+        arrayTemp = new ArrayList<>();
         this.setResizable(false);
-        this.setSize(1000,900);
+        this.setSize(1000,1000);
         this.setLocationRelativeTo(null);
         this.setLayout(null);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        this.setBackground(Color.white);
         
         pnlBesar= new JPanel();
-        pnlBesar.setBounds(0, 0, 1000, 900);
+        pnlBesar.setBounds(0, 0, 1000, 1000);
         pnlBesar.setLayout(null);
         pnlBesar.setBackground(new Color(244,242,229));
         
@@ -61,8 +76,7 @@ public class LayoutStudio extends JFrame{
         lblLayar.setBounds(250,25,500,50);
         
         pnlPanel0.add(lblLayar);
-        
-        
+
         pnlPanel1=new JPanel();
         pnlPanel1.setBounds(75, 125,120,700);
         pnlPanel1.setLayout(new GridLayout(10,2,5,5));
@@ -70,20 +84,30 @@ public class LayoutStudio extends JFrame{
         
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 2; j++) {
-                final JToggleButton btnButton1= new JToggleButton("A"+i+j);
-                btnButton1.setBackground(Color.white);
-                btnButton1.setForeground(Color.red);
-                btnButton1.addActionListener(new ActionListener(){
+//                JLabel l = new JLabel("A"+i+j,JLabel.CENTER);
+                Kursi k = new Kursi("A"+i+j);
+                k.id="A"+i+j;
+                arrayKursi.add(k);
+                k.setBackground(Color.white);
+                k.setHorizontalAlignment(JLabel.CENTER);
+                k.setOpaque(true);
+                k.addMouseListener(new MouseAdapter(){
                     @Override
-                    public void actionPerformed(ActionEvent actionEvent) {
-                        
-                        if (btnButton1.isSelected()==false){ 
-                            btnButton1.setBackground(Color.white);
-                            
+                    public void mouseClicked(MouseEvent me) {
+                        if(k.getBackground()==Color.red){
+                            k.setBackground(Color.white);
+                            for (int l = 0; l < arrayTemp.size(); l++) {
+                                if(arrayTemp.get(l) == k.id){
+                                    arrayTemp.remove(l);
+                                }
+                            }  
+                        }else{
+                            k.setBackground(Color.red);
+                            arrayTemp.add(k.id);
                         }
                     }
-            });
-                pnlPanel1.add(btnButton1);
+                });
+                pnlPanel1.add(k);
             }
         }
         
@@ -94,19 +118,29 @@ public class LayoutStudio extends JFrame{
         
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 10; j++) {
-                final JToggleButton btnButton2= new JToggleButton("B"+i+j);
-                btnButton2.setBackground(Color.white);
-                btnButton2.setForeground(Color.red);
-                btnButton2.addActionListener(new ActionListener(){
+                Kursi k = new Kursi("B"+i+j);
+                k.id="B"+i+j;
+                arrayKursi.add(k);
+                k.setBackground(Color.white);
+                k.setHorizontalAlignment(JLabel.CENTER);
+                k.setOpaque(true);
+                k.addMouseListener(new MouseAdapter(){
                     @Override
-                    public void actionPerformed(ActionEvent actionEvent) {
-                        if (btnButton2.isSelected()==false) {
-                            btnButton2.setBackground(Color.white);
-                           
+                    public void mouseClicked(MouseEvent me) {
+                        if(k.getBackground()==Color.red){
+                            k.setBackground(Color.white);
+                            for (int l = 0; l < arrayTemp.size(); l++) {
+                                if(arrayTemp.get(l) == k.id){
+                                    arrayTemp.remove(l);
+                                }
+                            }  
+                        }else{
+                            k.setBackground(Color.red);
+                            arrayTemp.add(k.id);
                         }
                     }
-            });
-                pnlPanel2.add(btnButton2); 
+                });
+                pnlPanel2.add(k);
             }
         }
         
@@ -117,21 +151,45 @@ public class LayoutStudio extends JFrame{
         
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 2; j++) {
-                final JToggleButton btnButton3= new JToggleButton("C"+i+j); 
-                btnButton3.setBackground(Color.white);
-                btnButton3.setForeground(Color.red);
-                btnButton3.addActionListener(new ActionListener(){
+                Kursi k = new Kursi("C"+i+j);
+                k.id="C"+i+j;
+                arrayKursi.add(k);
+                k.setBackground(Color.white);
+                k.setHorizontalAlignment(JLabel.CENTER);
+                k.setOpaque(true);
+                k.addMouseListener(new MouseAdapter(){
                     @Override
-                    public void actionPerformed(ActionEvent actionEvent) {
-                        if (btnButton3.isSelected()==false) {
-                            btnButton3.setBackground(Color.white);
-                            
+                    public void mouseClicked(MouseEvent me) {
+                        if(k.getBackground()==Color.red){
+                            k.setBackground(Color.white);
+                            for (int l = 0; l < arrayTemp.size(); l++) {
+                                if(arrayTemp.get(l) == k.id){
+                                    arrayTemp.remove(l);
+                                }
+                            }  
+                        }else{
+                            k.setBackground(Color.red);
+                            arrayTemp.add(k.id);
                         }
                     }
-            });
-                pnlPanel3.add(btnButton3);
+                });
+                pnlPanel3.add(k);
             }
         }
+
+        btnbuy=new JButton("Next");
+        btnbuy.setBounds(800, 875, 125, 50);
+        btnbuy.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e) {               
+                for (int i = 0; i < arrayTemp.size(); i++) {
+                    System.out.print(arrayTemp.get(i)+" ");
+                }
+                setVisible(false);
+            } 
+        });
+
+        pnlBesar.add(btnbuy);
         pnlBesar.add(pnlPanel3);
         pnlBesar.add(pnlPanel2);
         pnlBesar.add(pnlPanel1);
