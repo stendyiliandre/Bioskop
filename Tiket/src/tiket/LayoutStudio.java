@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tiket;
+package view;
 
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -18,7 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JToggleButton;
+import tiket.Kursi;
 
 
 /**
@@ -27,7 +25,7 @@ import javax.swing.JToggleButton;
  */
 public class LayoutStudio extends JFrame{
     
-    LayoutStudio(){
+    public LayoutStudio(){
         initComponents();
     }
 
@@ -183,9 +181,10 @@ public class LayoutStudio extends JFrame{
             @Override
             public void mouseClicked(MouseEvent e) {               
                 for (int i = 0; i < arrayTemp.size(); i++) {
-                    System.out.print(arrayTemp.get(i)+" ");
+         //           System.out.print(arrayTemp.get(i)+" ");
                 }
                 setVisible(false);
+                new Bayar(arrayTemp).setVisible(true);
             } 
         });
 
