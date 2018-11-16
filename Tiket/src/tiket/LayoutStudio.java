@@ -24,8 +24,13 @@ import tiket.Kursi;
  * @author William Johann
  */
 public class LayoutStudio extends JFrame{
-    
-    public LayoutStudio(){
+    String judul;
+    String tanggal;
+    String waktu;
+    public LayoutStudio(String judul,String tanggal,String waktu){
+        this.judul=judul;
+        this.tanggal=tanggal;
+        this.waktu=waktu;
         initComponents();
     }
 
@@ -184,7 +189,7 @@ public class LayoutStudio extends JFrame{
          //           System.out.print(arrayTemp.get(i)+" ");
                 }
                 setVisible(false);
-                new Bayar(arrayTemp).setVisible(true);
+                new Bayar(arrayTemp,judul,waktu,tanggal).setVisible(true);
             } 
         });
 

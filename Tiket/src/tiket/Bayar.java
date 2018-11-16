@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tiket;
+package view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,21 +18,37 @@ import javax.swing.JPanel;
  * @author William Johann
  */
 public class Bayar extends JFrame{
-
-    Bayar(){
+    ArrayList <String> kursi = new ArrayList<>();
+    String judul;
+    String tanggal;
+    String waktu;
+    Bayar(ArrayList <String> selected,String judul,String waktu,String tanggal){
+        this.judul=judul;
+        this.waktu=waktu;
+        this.tanggal=tanggal;
+        for (int i = 0; i < selected.size(); i++) {
+            kursi.add(selected.get(i));
+        }
         initComponent();
     }
+    
     JPanel pnlBesar;
     JPanel pnlJudul;
     JPanel pnlIsi;
     JPanel pnlButton;
     JLabel lblPembayaran;
     JLabel lblJudul;
+    JLabel lblIsiJudul;
     JLabel lblJam;
+    JLabel lblIsiJam;
     JLabel lblKursi;
+    JLabel lblIsiKursi;
     JLabel lblDate;
+    JLabel lblIsiDate;
     JLabel lblTotal;
+    JLabel lblIsiTotal;
     JLabel lblJumlah;
+    JLabel lblIsiJumlah;
     JButton btnBayar;
     
     private void initComponent(){
@@ -41,6 +58,11 @@ public class Bayar extends JFrame{
         this.setResizable(false);
         this.setLayout(null);
         
+        String strkursi = new String();
+        for (int i = 0; i < kursi.size(); i++) {
+            strkursi += kursi.get(i)+" ";
+        }
+        int jumlah = kursi.size();
         pnlBesar = new JPanel();
         pnlBesar.setBounds(0, 0, 400, 100);
         pnlBesar.setBackground(new Color(224,59,48));
@@ -56,35 +78,67 @@ public class Bayar extends JFrame{
         pnlIsi.setBackground(new Color(244,242,229));
         pnlIsi.setLayout(null);
         
-        lblJudul = new JLabel("Date: ");
+        lblJudul = new JLabel("Judul: ");
         lblJudul.setFont(new Font("Arial",Font.PLAIN,14));
+        lblIsiJudul = new JLabel(judul);
+        lblIsiJudul.setFont(new Font("Arial",Font.PLAIN,14));
+        
         lblDate = new JLabel("Date: ");
         lblDate.setFont(new Font("Arial",Font.PLAIN,14));
+        lblIsiDate = new JLabel(tanggal);
+        lblIsiDate.setFont(new Font("Arial",Font.PLAIN,14));
+        
         lblJam = new JLabel("Jam: ");
         lblJam.setFont(new Font("Arial",Font.PLAIN,14));
+        lblIsiJam = new JLabel(waktu);
+        lblIsiJam.setFont(new Font("Arial",Font.PLAIN,14));
+        
         lblKursi = new JLabel("Kursi: ");
         lblKursi.setFont(new Font("Arial",Font.PLAIN,14));
+        lblIsiKursi= new JLabel(strkursi);
+        lblIsiKursi.setFont(new Font("Arial",Font.BOLD,14));
+        
         lblJumlah = new JLabel("Jumlah: ");
-        lblJumlah.setFont(new Font("Arial",Font.BOLD,14));
+        lblJumlah.setFont(new Font("Arial",Font.BOLD,14));      
+        lblIsiJumlah = new JLabel(Integer.toString(jumlah));
+        lblIsiJumlah.setFont(new Font("Arial",Font.BOLD,14));
+        
         lblTotal = new JLabel("Total: ");
         lblTotal.setFont(new Font("Arial",Font.BOLD,14));
+        lblIsiTotal = new JLabel(Integer.toString(jumlah*35000));
+        lblIsiTotal.setFont(new Font("Arial",Font.BOLD,14));
         
+        
+        for (int i = 0; i < kursi.size(); i++) {
+            System.out.print(kursi.get(i)+" ");
+        }
         lblJudul.setBounds(15,0,75, 35);
+        lblIsiJudul.setBounds(80,0,75,35);
         lblDate.setBounds(15,35,75, 35);
+        lblIsiDate.setBounds(80,35,75,35);
         lblJam.setBounds(15,70,75, 35);
+        lblIsiJam.setBounds(80,70,75,35);
         lblKursi.setBounds(15,105,75, 35);
+        lblIsiKursi.setBounds(80, 105, 200, 35);
         lblJumlah.setBounds(15,140,75, 35);
+        lblIsiJumlah.setBounds(80,140,75,35);
         lblTotal.setBounds(15,175,75, 35);
-        
+        lblIsiTotal.setBounds(80, 175, 200, 35);
         btnBayar=new JButton("Buy");
         btnBayar.setBounds(250, 200, 125, 40);
         
         pnlIsi.add(lblJudul);
+        pnlIsi.add(lblIsiJudul);
         pnlIsi.add(lblDate);
+        pnlIsi.add(lblIsiDate);
         pnlIsi.add(lblJam);
+        pnlIsi.add(lblIsiJam);
         pnlIsi.add(lblKursi);
+        pnlIsi.add(lblIsiKursi);
         pnlIsi.add(lblJumlah);
+        pnlIsi.add(lblIsiJumlah);
         pnlIsi.add(lblTotal);
+        pnlIsi.add(lblIsiTotal);
         pnlIsi.add(btnBayar);
 
         
