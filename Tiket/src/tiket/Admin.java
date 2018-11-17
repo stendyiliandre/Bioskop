@@ -10,11 +10,35 @@ package tiket;
  * @author Kevin Suwanda, Stendy Iliandre, William Johann
  */
 public class Admin extends User{
-//    private String namaproduk;
-//    private String jamproduk;
-//    private String theater;
+    private String namaproduk;
+    private String jamproduk;
+    private String theater;
     private int gaji;
     private int kerja;
+
+    public String getNamaproduk() {
+        return namaproduk;
+    }
+
+    public void setNamaproduk(String namaproduk) {
+        this.namaproduk = namaproduk;
+    }
+
+    public String getJamproduk() {
+        return jamproduk;
+    }
+
+    public void setJamproduk(String jamproduk) {
+        this.jamproduk = jamproduk;
+    }
+
+    public String getTheater() {
+        return theater;
+    }
+
+    public void setTheater(String theater) {
+        this.theater = theater;
+    }
 
     public int getGaji() {
         return gaji;
@@ -31,10 +55,6 @@ public class Admin extends User{
     public void setKerja(int kerja) {
         this.kerja = kerja;
     }
-    
-    public void setJadwal(Jadwal j) {
-        
-    }
 
     public void bayar(Admin ad){
         int a = ad.getKerja();
@@ -46,5 +66,6 @@ public class Admin extends User{
     public void getInfo() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
     
 }
