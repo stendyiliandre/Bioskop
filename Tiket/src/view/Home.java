@@ -5,6 +5,7 @@
  */
 package view;
 
+import database.JadwalMovie;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -26,7 +27,9 @@ import tiket.Movies;
 import database.MoviesDao;
 import java.util.List;
 import javax.swing.JScrollPane;
-import tiket.Register;
+import tiket.Jadwal;
+import view.Register;
+import view.TopUpForm;
 
 /**
  *
@@ -75,92 +78,27 @@ public class Home extends JFrame{
         lblMovie1 = new JLabel();
         lblMovie1.setBounds(25,0,300,300);
         lblMovie1.setIcon(new ImageIcon(resizeImage(listMovies.get(0).getDirectory(), 250, 250)));
-        lblMovie1.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent me) {
-                try {
-                    new DetailHome(listMovies.get(0).getJudul(),listMovies.get(0).getDirectory()).setVisible(true);
-                    setVisible(false);
-                } catch (IOException ex) {
-                    Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
        
         lblMovie2 = new JLabel();       
         lblMovie2.setBounds(325,0,300,300);
         lblMovie2.setIcon(new ImageIcon(resizeImage(listMovies.get(1).getDirectory(), 250, 250)));
-        lblMovie2.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent me) {
-                try {
-                    new DetailHome(listMovies.get(1).getJudul(),listMovies.get(1).getDirectory()).setVisible(true);
-                    setVisible(false);
-                } catch (IOException ex) {
-                    Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
         
         lblMovie3 = new JLabel();  
         lblMovie3.setBounds(625,0,300,300);
         lblMovie3.setIcon(new ImageIcon(resizeImage(listMovies.get(2).getDirectory(), 250, 250)));
-        lblMovie3.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent me) {
-                try {
-                    new DetailHome(listMovies.get(2).getJudul(),listMovies.get(2).getDirectory()).setVisible(true);
-                    setVisible(false);
-                } catch (IOException ex) {
-                    Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
+
         
         lblMovie4 = new JLabel();  
         lblMovie4.setBounds(25,0,300,300);
         lblMovie4.setIcon(new ImageIcon(resizeImage(listMovies.get(3).getDirectory(), 250, 250)));
-        lblMovie4.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent me) {
-                try {
-                    new DetailHome(listMovies.get(3).getJudul(),listMovies.get(3).getDirectory()).setVisible(true);
-                    setVisible(false);
-                } catch (IOException ex) {
-                    Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
         
         lblMovie5 = new JLabel();  
         lblMovie5.setBounds(325,0,300,300);
         lblMovie5.setIcon(new ImageIcon(resizeImage(listMovies.get(4).getDirectory(), 250, 250)));
-        lblMovie5.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent me) {
-                try {
-                    new DetailHome(listMovies.get(4).getJudul(),listMovies.get(4).getDirectory()).setVisible(true);
-                    setVisible(false);
-                } catch (IOException ex) {
-                    Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
         
         lblMovie6 = new JLabel();  
         lblMovie6.setBounds(625,0,300,300);
         lblMovie6.setIcon(new ImageIcon(resizeImage(listMovies.get(5).getDirectory(), 250, 250)));
-        lblMovie6.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent me) {
-                try {
-                    new DetailHome(listMovies.get(5).getJudul(),listMovies.get(5).getDirectory()).setVisible(true);
-                    setVisible(false);
-                } catch (IOException ex) {
-                    Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
         
         lblText1 = new JLabel(listMovies.get(0).getJudul());
         lblText1.setBounds(120, 0, 300, 25);
@@ -185,21 +123,6 @@ public class Home extends JFrame{
         lblText6 = new JLabel(listMovies.get(5).getJudul());
         lblText6.setBounds(710, 0, 300, 25);
         lblText6.setFont(new Font("Arial",Font.BOLD,14));
-        
-        btnFb = new JButton("Food");
-        btnFb.setBounds(400, 290, 110, 25);
-        btnFb.setFont(new Font("Arial",Font.BOLD,14));
-        btnFb.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent me) {
-                try {
-                    FoodBeverage();
-                } catch (IOException ex) {
-                    Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-        pnlPanel4.add(btnFb);
         
         btnLogin = new JButton("Login");
         btnLogin.setBounds(630, 290, 110, 25);
@@ -244,16 +167,7 @@ public class Home extends JFrame{
         pnlPanel4.add(lblMovie4);
         pnlPanel4.add(lblMovie5);
         pnlPanel4.add(lblMovie6);
-        for (int i = 0; i < listMovies.size(); i++) {
-            System.out.print(listMovies.get(i).getJudul()+", ");
-            System.out.println("");
-        }
       }
-    
-    public void FoodBeverage() throws IOException{
-        new FoodBeverage().setVisible(true);
-        this.setVisible(false);
-    }
     
     public void Login() throws IOException{
         new LoginForm().setVisible(true);
@@ -295,5 +209,6 @@ public class Home extends JFrame{
     JButton btnFb;
     JButton btnLogin;
     JButton btnRegister;
+    JButton btnTopUp;
     
 }
