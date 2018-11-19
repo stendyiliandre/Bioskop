@@ -24,13 +24,14 @@ import tiket.Kursi;
  * @author William Johann
  */
 public class LayoutStudio extends JFrame{
+    int id_jadwal;
     String judul;
-    String tanggal;
-    String waktu;
-    public LayoutStudio(String judul,String tanggal,String waktu){
+    String jadwal[];
+    
+    public LayoutStudio(int id_jadwal, String judul, String jadwal,String id_user){
         this.judul=judul;
-        this.tanggal=tanggal;
-        this.waktu=waktu;
+        this.jadwal=jadwal.split(" ");
+        System.out.println(id_jadwal);
         initComponents();
     }
 
@@ -189,7 +190,7 @@ public class LayoutStudio extends JFrame{
          //           System.out.print(arrayTemp.get(i)+" ");
                 }
                 setVisible(false);
-                new Bayar(arrayTemp,judul,waktu,tanggal).setVisible(true);
+                new Bayar(arrayTemp,judul,jadwal[1],jadwal[0]).setVisible(true);
             } 
         });
 
