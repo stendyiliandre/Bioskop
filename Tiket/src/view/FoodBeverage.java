@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tiket;
+package view;
 
+import database.FoodDao;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -13,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -22,13 +24,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
+import tiket.Makanan;
 
 /**
  *
  * @author Stendy Iliandre
  */
 public class FoodBeverage extends JFrame {
-
+    List<Makanan> listFood = FoodDao.selectAllMakanan();
     public FoodBeverage() throws IOException {
         initComponents();
     }
@@ -68,115 +71,121 @@ public class FoodBeverage extends JFrame {
 
         food1 = new JLabel();
         food1.setBounds(25, 0, 300, 300);
-        food1.setIcon(new ImageIcon(resizeImage("food/hotdog.png", 250, 250)));
+        food1.setIcon(new ImageIcon(resizeImage(listFood.get(0).getDirectory(), 250, 250)));
         food1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent me) {
                 try {
-                    DetailFood1();
+                    new DetailFood(listFood.get(0).getMenu(), listFood.get(0).getHarga(), listFood.get(0).getDirectory()).setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                setVisible(false);
             }
 
         });
 
         food2 = new JLabel();
         food2.setBounds(325, 0, 300, 300);
-        food2.setIcon(new ImageIcon(resizeImage("food/popcorn.png", 250, 250)));
+        food2.setIcon(new ImageIcon(resizeImage(listFood.get(1).getDirectory(), 250, 250)));
         food2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent me) {
                 try {
-                    DetailFood2();
+                    new DetailFood(listFood.get(1).getMenu(), listFood.get(1).getHarga(), listFood.get(1).getDirectory()).setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                setVisible(false);
             }
 
         });
 
         food3 = new JLabel();
         food3.setBounds(625, 0, 300, 300);
-        food3.setIcon(new ImageIcon(resizeImage("food/potato.png", 250, 250)));
+        food3.setIcon(new ImageIcon(resizeImage(listFood.get(2).getDirectory(), 250, 250)));
         food3.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent me) {
                 try {
-                    DetailFood3();
+                    new DetailFood(listFood.get(2).getMenu(), listFood.get(2).getHarga(), listFood.get(2).getDirectory()).setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                setVisible(false);
             }
 
         });
 
         food4 = new JLabel();
         food4.setBounds(25, 0, 300, 300);
-        food4.setIcon(new ImageIcon(resizeImage("food/cola.png", 250, 250)));
+        food4.setIcon(new ImageIcon(resizeImage(listFood.get(3).getDirectory(), 250, 250)));
         food4.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent me) {
                 try {
-                    DetailFood4();
+                    new DetailFood(listFood.get(3).getMenu(), listFood.get(3).getHarga(), listFood.get(3).getDirectory()).setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                setVisible(false);
             }
 
         });
 
         food5 = new JLabel();
         food5.setBounds(325, 0, 300, 300);
-        food5.setIcon(new ImageIcon(resizeImage("food/aqua.png", 250, 250)));
+        food5.setIcon(new ImageIcon(resizeImage(listFood.get(4).getDirectory(), 250, 250)));
         food5.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent me) {
                 try {
-                    DetailFood5();
+                    new DetailFood(listFood.get(4).getMenu(), listFood.get(4).getHarga(), listFood.get(4).getDirectory()).setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                setVisible(false);
             }
 
         });
 
         food6 = new JLabel();
         food6.setBounds(625, 0, 300, 300);
-        food6.setIcon(new ImageIcon(resizeImage("food/orange.png", 250, 250)));
+        food6.setIcon(new ImageIcon(resizeImage(listFood.get(5).getDirectory(), 250, 250)));
         food6.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent me) {
                 try {
-                    DetailFood6();
+                    new DetailFood(listFood.get(5).getMenu(), listFood.get(5).getHarga(), listFood.get(5).getDirectory()).setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                setVisible(false);
             }
-            
+
         });
 
-        text1 = new JLabel("Hotdog");
+        text1 = new JLabel(listFood.get(0).getMenu());
         text1.setBounds(125, 0, 300, 25);
         text1.setFont(new Font("Calibri", Font.BOLD, 16));
 
-        text2 = new JLabel("Popcorn");
+        text2 = new JLabel(listFood.get(1).getMenu());
         text2.setBounds(420, 0, 300, 25);
         text2.setFont(new Font("Calibri", Font.BOLD, 16));
 
-        text3 = new JLabel("French Fries");
+        text3 = new JLabel(listFood.get(2).getMenu());
         text3.setBounds(710, 0, 300, 25);
         text3.setFont(new Font("Calibri", Font.BOLD, 16));
 
-        text4 = new JLabel("Cola");
+        text4 = new JLabel(listFood.get(3).getMenu());
         text4.setBounds(135, 0, 300, 25);
         text4.setFont(new Font("Calibri", Font.BOLD, 16));
 
-        text5 = new JLabel("Aqua");
+        text5 = new JLabel(listFood.get(4).getMenu());
         text5.setBounds(435, 0, 300, 25);
         text5.setFont(new Font("Calibri", Font.BOLD, 16));
 
-        text6 = new JLabel("Orange Juice");
+        text6 = new JLabel(listFood.get(5).getMenu());
         text6.setBounds(710, 0, 300, 25);
         text6.setFont(new Font("Calibri", Font.BOLD, 16));
         
@@ -212,7 +221,7 @@ public class FoodBeverage extends JFrame {
     }
 
     public void Home() throws IOException{
-        new Home().setVisible(true);
+        new Home2().setVisible(true);
         this.setVisible(false);
     }
     
@@ -225,36 +234,6 @@ public class FoodBeverage extends JFrame {
             ex.printStackTrace(System.err);
         }
         return dimg;
-    }
-
-    public void DetailFood1() throws IOException {
-        new DetailFood1().setVisible(true);
-        this.setVisible(false);
-    }
-
-    public void DetailFood2() throws IOException {
-        new DetailFood2().setVisible(true);
-        this.setVisible(false);
-    }
-
-    public void DetailFood3() throws IOException {
-        new DetailFood3().setVisible(true);
-        this.setVisible(false);
-    }
-
-    public void DetailFood4() throws IOException {
-        new DetailFood4().setVisible(true);
-        this.setVisible(false);
-    }
-
-    public void DetailFood5() throws IOException {
-        new DetailFood5().setVisible(true);
-        this.setVisible(false);
-    }
-
-    public void DetailFood6() throws IOException {
-        new DetailFood6().setVisible(true);
-        this.setVisible(false);
     }
 
     JPanel pnlPanel1;
