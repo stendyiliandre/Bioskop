@@ -7,12 +7,47 @@ package tiket;
 
 /**
  *
- * @author Kevin Suwanda, Stendy Iliandre, William Johann
+ * @author Stendy Iliandre
  */
 public class Makanan implements Info{
-    public String pesan;
-    public int qty;
-    public int harga;
+    private int id;
+    private String menu;
+    private int harga;
+    private String directory;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getMenu() {
+        return menu;
+    }
+
+    public void setMenu(String menu) {
+        this.menu = menu;
+    }
+
+    public int getHarga() {
+        return harga;
+    }
+
+    public void setHarga(int harga) {
+        this.harga = harga;
+    }
+
+    public String getDirectory() {
+        return directory;
+    }
+
+    public void setDirectory(String directory) {
+        this.directory = directory;
+    }
+    
+    
 
     @Override
     public void getInfo() {
