@@ -6,17 +6,20 @@
 package view;
 
 
+import database.TransaksiDao;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import tiket.Kursi;
+import tiket.Transaksi;
 
 
 /**
@@ -27,11 +30,12 @@ public class LayoutStudio extends JFrame{
     int id_jadwal;
     String judul;
     String jadwal[];
+    List<Transaksi> listTransaksi = TransaksiDao.selectAllTransaksi();
     
     public LayoutStudio(int id_jadwal, String judul, String jadwal,String id_user){
         this.judul=judul;
+        this.id_jadwal = id_jadwal;
         this.jadwal=jadwal.split(" ");
-        System.out.println(id_jadwal);
         initComponents();
     }
 
@@ -55,7 +59,7 @@ public class LayoutStudio extends JFrame{
     public ArrayList<Kursi> arrayKursi;
     public ArrayList <String>arrayTemp;
 
-    private void initComponents(){
+    private void initComponents(){             
         arrayKursi = new ArrayList<>();
         arrayTemp = new ArrayList<>();
         this.setResizable(false);
@@ -88,29 +92,36 @@ public class LayoutStudio extends JFrame{
         
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 2; j++) {
-//                JLabel l = new JLabel("A"+i+j,JLabel.CENTER);
                 Kursi k = new Kursi("A"+i+j);
                 k.id="A"+i+j;
                 arrayKursi.add(k);
-                k.setBackground(Color.white);
                 k.setHorizontalAlignment(JLabel.CENTER);
                 k.setOpaque(true);
-                k.addMouseListener(new MouseAdapter(){
-                    @Override
-                    public void mouseClicked(MouseEvent me) {
-                        if(k.getBackground()==Color.red){
-                            k.setBackground(Color.white);
-                            for (int l = 0; l < arrayTemp.size(); l++) {
-                                if(arrayTemp.get(l) == k.id){
-                                    arrayTemp.remove(l);
+                k.setBackground(Color.white);
+                for (int l = 0; l < listTransaksi.size(); l++) {
+                    if(listTransaksi.get(l).kursi.equals(k.id)&& listTransaksi.get(l).id_jadwal==id_jadwal){
+                        k.setBackground(Color.gray);
+                    }else{
+                        k.addMouseListener(new MouseAdapter(){
+                            @Override
+                            public void mouseClicked(MouseEvent me) {
+                                if(k.getBackground()==Color.red){
+                                    k.setBackground(Color.white);
+                                    for (int l = 0; l < arrayTemp.size(); l++) {
+                                        if(arrayTemp.get(l) == k.id){
+                                            arrayTemp.remove(l);
+                                        }
+                                    }  
+                                }else if (k.getBackground().equals(Color.gray)){
+                                    
+                                }else{
+                                    k.setBackground(Color.red);
+                                    arrayTemp.add(k.id);
                                 }
-                            }  
-                        }else{
-                            k.setBackground(Color.red);
-                            arrayTemp.add(k.id);
-                        }
+                            }
+                        });
                     }
-                });
+                }                
                 pnlPanel1.add(k);
             }
         }
@@ -128,22 +139,30 @@ public class LayoutStudio extends JFrame{
                 k.setBackground(Color.white);
                 k.setHorizontalAlignment(JLabel.CENTER);
                 k.setOpaque(true);
-                k.addMouseListener(new MouseAdapter(){
-                    @Override
-                    public void mouseClicked(MouseEvent me) {
-                        if(k.getBackground()==Color.red){
-                            k.setBackground(Color.white);
-                            for (int l = 0; l < arrayTemp.size(); l++) {
-                                if(arrayTemp.get(l) == k.id){
-                                    arrayTemp.remove(l);
+                for (int l = 0; l < listTransaksi.size(); l++) {
+                    if(listTransaksi.get(l).kursi.equals(k.id)&& listTransaksi.get(l).id_jadwal==id_jadwal){
+                        k.setBackground(Color.gray);
+                    }else{
+                        k.addMouseListener(new MouseAdapter(){
+                            @Override
+                            public void mouseClicked(MouseEvent me) {
+                                if(k.getBackground()==Color.red){
+                                    k.setBackground(Color.white);
+                                    for (int l = 0; l < arrayTemp.size(); l++) {
+                                        if(arrayTemp.get(l) == k.id){
+                                            arrayTemp.remove(l);
+                                        }
+                                    }  
+                                }else if (k.getBackground().equals(Color.gray)){
+                                    
+                                }else{
+                                    k.setBackground(Color.red);
+                                    arrayTemp.add(k.id);
                                 }
-                            }  
-                        }else{
-                            k.setBackground(Color.red);
-                            arrayTemp.add(k.id);
-                        }
+                            }
+                        });
                     }
-                });
+                }                
                 pnlPanel2.add(k);
             }
         }
@@ -158,25 +177,34 @@ public class LayoutStudio extends JFrame{
                 Kursi k = new Kursi("C"+i+j);
                 k.id="C"+i+j;
                 arrayKursi.add(k);
-                k.setBackground(Color.white);
+                
                 k.setHorizontalAlignment(JLabel.CENTER);
                 k.setOpaque(true);
-                k.addMouseListener(new MouseAdapter(){
-                    @Override
-                    public void mouseClicked(MouseEvent me) {
-                        if(k.getBackground()==Color.red){
-                            k.setBackground(Color.white);
-                            for (int l = 0; l < arrayTemp.size(); l++) {
-                                if(arrayTemp.get(l) == k.id){
-                                    arrayTemp.remove(l);
+                for (int l = 0; l < listTransaksi.size(); l++) {
+                    if(listTransaksi.get(l).kursi.equals(k.id)&& listTransaksi.get(l).id_jadwal==id_jadwal){
+                        k.setBackground(Color.gray);
+                    }else{
+                        k.setBackground(Color.white);
+                        k.addMouseListener(new MouseAdapter(){
+                            @Override
+                            public void mouseClicked(MouseEvent me) {
+                                if(k.getBackground().equals(Color.red)){
+                                    k.setBackground(Color.white);
+                                    for (int l = 0; l < arrayTemp.size(); l++) {
+                                        if(arrayTemp.get(l) == k.id){
+                                            arrayTemp.remove(l);
+                                        }
+                                    }  
+                                }else if (k.getBackground().equals(Color.gray)){
+                                    
+                                }else{
+                                    k.setBackground(Color.red);
+                                    arrayTemp.add(k.id);
                                 }
-                            }  
-                        }else{
-                            k.setBackground(Color.red);
-                            arrayTemp.add(k.id);
-                        }
+                            }
+                        });
                     }
-                });
+                }                
                 pnlPanel3.add(k);
             }
         }
@@ -190,9 +218,17 @@ public class LayoutStudio extends JFrame{
          //           System.out.print(arrayTemp.get(i)+" ");
                 }
                 setVisible(false);
-                new Bayar(arrayTemp,judul,jadwal[1],jadwal[0]).setVisible(true);
+                new Bayar(arrayTemp,judul,jadwal[1],jadwal[0],id_jadwal).setVisible(true);
             } 
         });
+        
+        for (int i = 0; i < arrayKursi.size(); i++) {
+            for (int j = 0; j < listTransaksi.size(); j++) {
+                if(arrayKursi.get(i).id==listTransaksi.get(j).kursi){
+                    arrayKursi.get(i).setBackground(Color.gray);  
+                }
+            }
+        }
 
         pnlBesar.add(btnbuy);
         pnlBesar.add(pnlPanel3);

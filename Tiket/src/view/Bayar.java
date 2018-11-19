@@ -5,13 +5,20 @@
  */
 package view;
 
+import database.TransaksiDao;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import tiket.Transaksi;
 
 /**
  *
@@ -20,12 +27,14 @@ import javax.swing.JPanel;
 public class Bayar extends JFrame{
     ArrayList <String> kursi = new ArrayList<>();
     String judul;
+    String jam;
     String tanggal;
-    String waktu;
-    Bayar(ArrayList <String> selected,String judul,String waktu,String tanggal){
+    int id_jadwal;
+    Bayar(ArrayList <String> selected,String judul,String jam,String tanggal,int idJadwal){
         this.judul=judul;
-        this.waktu=waktu;
+        this.jam=jam;
         this.tanggal=tanggal;
+        id_jadwal=(idJadwal);
         for (int i = 0; i < selected.size(); i++) {
             kursi.add(selected.get(i));
         }
@@ -82,48 +91,42 @@ public class Bayar extends JFrame{
         lblJudul.setFont(new Font("Arial",Font.PLAIN,14));
         lblIsiJudul = new JLabel(judul);
         lblIsiJudul.setFont(new Font("Arial",Font.PLAIN,14));
-        
         lblDate = new JLabel("Date: ");
         lblDate.setFont(new Font("Arial",Font.PLAIN,14));
         lblIsiDate = new JLabel(tanggal);
         lblIsiDate.setFont(new Font("Arial",Font.PLAIN,14));
-        
         lblJam = new JLabel("Jam: ");
         lblJam.setFont(new Font("Arial",Font.PLAIN,14));
-        lblIsiJam = new JLabel(waktu);
+        lblIsiJam = new JLabel(jam);
         lblIsiJam.setFont(new Font("Arial",Font.PLAIN,14));
-        
         lblKursi = new JLabel("Kursi: ");
         lblKursi.setFont(new Font("Arial",Font.PLAIN,14));
         lblIsiKursi= new JLabel(strkursi);
         lblIsiKursi.setFont(new Font("Arial",Font.BOLD,14));
-        
         lblJumlah = new JLabel("Jumlah: ");
-        lblJumlah.setFont(new Font("Arial",Font.BOLD,14));      
+        lblJumlah.setFont(new Font("Arial",Font.BOLD,14));
         lblIsiJumlah = new JLabel(Integer.toString(jumlah));
         lblIsiJumlah.setFont(new Font("Arial",Font.BOLD,14));
-        
         lblTotal = new JLabel("Total: ");
         lblTotal.setFont(new Font("Arial",Font.BOLD,14));
-        lblIsiTotal = new JLabel(Integer.toString(jumlah*35000));
+        lblIsiTotal = new JLabel(Integer.toString(jumlah*25000));
         lblIsiTotal.setFont(new Font("Arial",Font.BOLD,14));
-        
         
         for (int i = 0; i < kursi.size(); i++) {
             System.out.print(kursi.get(i)+" ");
         }
         lblJudul.setBounds(15,0,75, 35);
-        lblIsiJudul.setBounds(80,0,75,35);
+        lblIsiJudul.setBounds(80, 0,200,35);
         lblDate.setBounds(15,35,75, 35);
-        lblIsiDate.setBounds(80,35,75,35);
+        lblIsiDate.setBounds(80,35,200,35);
         lblJam.setBounds(15,70,75, 35);
-        lblIsiJam.setBounds(80,70,75,35);
+        lblIsiJam.setBounds(80,70,200,35);
         lblKursi.setBounds(15,105,75, 35);
         lblIsiKursi.setBounds(80, 105, 200, 35);
         lblJumlah.setBounds(15,140,75, 35);
         lblIsiJumlah.setBounds(80,140,75,35);
         lblTotal.setBounds(15,175,75, 35);
-        lblIsiTotal.setBounds(80, 175, 200, 35);
+        lblIsiTotal.setBounds(80,175,200,35);
         btnBayar=new JButton("Buy");
         btnBayar.setBounds(250, 200, 125, 40);
         
@@ -141,13 +144,29 @@ public class Bayar extends JFrame{
         pnlIsi.add(lblIsiTotal);
         pnlIsi.add(btnBayar);
 
-        
         this.add(pnlBesar);
         this.add(pnlIsi);
         
-        
-        
-        
+        btnBayar.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                for (int i = 0; i < kursi.size(); i++) {
+                    Transaksi t = new Transaksi();
+                    t.setId_jadwal(id_jadwal);
+                    t.setKursi(kursi.get(i));
+                    TransaksiDao.insertData(t);
+                    System.out.println("berhasil");
+                    setVisible(false);
+                    try {
+                        new Home2().setVisible(true);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Bayar.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                  
+                }
+            }
+            
+        });
         
     }
     
