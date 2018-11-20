@@ -25,16 +25,20 @@ import tiket.Transaksi;
  * @author William Johann
  */
 public class Bayar extends JFrame{
+    String id_lgn;
     ArrayList <String> kursi = new ArrayList<>();
     String judul;
     String jam;
     String tanggal;
     int id_jadwal;
-    Bayar(ArrayList <String> selected,String judul,String jam,String tanggal,int idJadwal){
+    String id_room;
+    Bayar(String id_lgn, ArrayList <String> selected,String judul,String jam,String tanggal,int idJadwal, String idRoom){
+        this.id_lgn = id_lgn;
         this.judul=judul;
         this.jam=jam;
         this.tanggal=tanggal;
-        id_jadwal=(idJadwal);
+        this.id_jadwal=(idJadwal);
+        this.id_room = idRoom;
         for (int i = 0; i < selected.size(); i++) {
             kursi.add(selected.get(i));
         }
@@ -52,6 +56,8 @@ public class Bayar extends JFrame{
     JLabel lblIsiJam;
     JLabel lblKursi;
     JLabel lblIsiKursi;
+    JLabel lblStudio;
+    JLabel lblIsiStudio;
     JLabel lblDate;
     JLabel lblIsiDate;
     JLabel lblTotal;
@@ -61,7 +67,7 @@ public class Bayar extends JFrame{
     JButton btnBayar;
     
     private void initComponent(){
-        this.setSize(400,400);
+        this.setSize(400,435);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setResizable(false);
@@ -99,6 +105,10 @@ public class Bayar extends JFrame{
         lblJam.setFont(new Font("Arial",Font.PLAIN,14));
         lblIsiJam = new JLabel(jam);
         lblIsiJam.setFont(new Font("Arial",Font.PLAIN,14));
+        lblStudio = new JLabel("Studio: ");
+        lblStudio.setFont(new Font("Arial",Font.PLAIN,14));
+        lblIsiStudio = new JLabel(id_room);
+        lblIsiStudio.setFont(new Font("Arial",Font.BOLD,14));
         lblKursi = new JLabel("Kursi: ");
         lblKursi.setFont(new Font("Arial",Font.PLAIN,14));
         lblIsiKursi= new JLabel(strkursi);
@@ -121,14 +131,16 @@ public class Bayar extends JFrame{
         lblIsiDate.setBounds(80,35,200,35);
         lblJam.setBounds(15,70,75, 35);
         lblIsiJam.setBounds(80,70,200,35);
-        lblKursi.setBounds(15,105,75, 35);
-        lblIsiKursi.setBounds(80, 105, 200, 35);
-        lblJumlah.setBounds(15,140,75, 35);
-        lblIsiJumlah.setBounds(80,140,75,35);
-        lblTotal.setBounds(15,175,75, 35);
-        lblIsiTotal.setBounds(80,175,200,35);
+        lblStudio.setBounds(15,105,75, 35);
+        lblIsiStudio.setBounds(80, 105, 200, 35);
+        lblKursi.setBounds(15,140,75, 35);
+        lblIsiKursi.setBounds(80, 140, 200, 35);
+        lblJumlah.setBounds(15,175,75, 35);
+        lblIsiJumlah.setBounds(80,175,75,35);
+        lblTotal.setBounds(15,210,75, 35);
+        lblIsiTotal.setBounds(80,210,200,35);
         btnBayar=new JButton("Buy");
-        btnBayar.setBounds(250, 200, 125, 40);
+        btnBayar.setBounds(250, 235, 125, 40);
         
         pnlIsi.add(lblJudul);
         pnlIsi.add(lblIsiJudul);
@@ -136,6 +148,8 @@ public class Bayar extends JFrame{
         pnlIsi.add(lblIsiDate);
         pnlIsi.add(lblJam);
         pnlIsi.add(lblIsiJam);
+        pnlIsi.add(lblStudio);
+        pnlIsi.add(lblIsiStudio);
         pnlIsi.add(lblKursi);
         pnlIsi.add(lblIsiKursi);
         pnlIsi.add(lblJumlah);
@@ -158,7 +172,7 @@ public class Bayar extends JFrame{
                     System.out.println("berhasil");
                     setVisible(false);
                     try {
-                        new Home2().setVisible(true);
+                        new Home2(id_lgn).setVisible(true);
                     } catch (IOException ex) {
                         Logger.getLogger(Bayar.class.getName()).log(Level.SEVERE, null, ex);
                     }

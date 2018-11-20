@@ -36,9 +36,11 @@ import view.TopUpForm;
  * @author kevin suwanda
  */
 public class Home2 extends JFrame{
-    List<Movies> listMovies=MoviesDao.selectAllMovies();
+    List<Movies> listMovies = MoviesDao.selectAllMovies();
     List<Jadwal> listJadwal = JadwalMovie.selectAllJadwal();
-    public Home2() throws IOException{
+    String id_lgn;
+    public Home2(String id_lgn) throws IOException{
+        this.id_lgn = id_lgn;
         initComponents();
     }
     
@@ -83,10 +85,10 @@ public class Home2 extends JFrame{
             @Override
             public void mouseClicked(MouseEvent me) {
                 try {
-                    new DetailHome(listMovies.get(0).getJudul(),listMovies.get(0).getDirectory(),
-                            listJadwal.get(0).getId_jadwal(),listJadwal.get(0).getTanggal(),
-                            listJadwal.get(1).getId_jadwal(),listJadwal.get(1).getTanggal(),
-                            listJadwal.get(2).getId_jadwal(),listJadwal.get(2).getTanggal()).setVisible(true);
+                    new DetailHome(id_lgn, listMovies.get(0).getJudul(),listMovies.get(0).getDirectory(),
+                            listJadwal.get(0).getId_jadwal(),listJadwal.get(0).getTanggal(), listJadwal.get(0).getId_studio(),
+                            listJadwal.get(1).getId_jadwal(),listJadwal.get(1).getTanggal(), listJadwal.get(1).getId_studio(),
+                            listJadwal.get(2).getId_jadwal(),listJadwal.get(2).getTanggal(), listJadwal.get(2).getId_studio()).setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -101,10 +103,10 @@ public class Home2 extends JFrame{
             @Override
             public void mouseClicked(MouseEvent me) {
                 try {
-                    new DetailHome(listMovies.get(1).getJudul(),listMovies.get(1).getDirectory(),
-                            listJadwal.get(3).getId_jadwal(),listJadwal.get(3).getTanggal(),
-                            listJadwal.get(4).getId_jadwal(),listJadwal.get(4).getTanggal(),
-                            listJadwal.get(5).getId_jadwal(),listJadwal.get(5).getTanggal()).setVisible(true);
+                    new DetailHome(id_lgn, listMovies.get(1).getJudul(),listMovies.get(1).getDirectory(),
+                            listJadwal.get(3).getId_jadwal(),listJadwal.get(3).getTanggal(), listJadwal.get(3).getId_studio(),
+                            listJadwal.get(4).getId_jadwal(),listJadwal.get(4).getTanggal(), listJadwal.get(4).getId_studio(),
+                            listJadwal.get(5).getId_jadwal(),listJadwal.get(5).getTanggal(), listJadwal.get(5).getId_studio()).setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -119,10 +121,10 @@ public class Home2 extends JFrame{
             @Override
             public void mouseClicked(MouseEvent me) {
                 try {
-                    new DetailHome(listMovies.get(2).getJudul(),listMovies.get(2).getDirectory(),
-                            listJadwal.get(6).getId_jadwal(),listJadwal.get(6).getTanggal(),
-                            listJadwal.get(7).getId_jadwal(),listJadwal.get(7).getTanggal(),
-                            listJadwal.get(8).getId_jadwal(),listJadwal.get(8).getTanggal()).setVisible(true);
+                    new DetailHome(id_lgn, listMovies.get(2).getJudul(),listMovies.get(2).getDirectory(),
+                            listJadwal.get(6).getId_jadwal(),listJadwal.get(6).getTanggal(), listJadwal.get(6).getId_studio(),
+                            listJadwal.get(7).getId_jadwal(),listJadwal.get(7).getTanggal(), listJadwal.get(7).getId_studio(),
+                            listJadwal.get(8).getId_jadwal(),listJadwal.get(8).getTanggal(), listJadwal.get(8).getId_studio()).setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -137,10 +139,10 @@ public class Home2 extends JFrame{
             @Override
             public void mouseClicked(MouseEvent me) {
                 try {
-                    new DetailHome(listMovies.get(3).getJudul(),listMovies.get(3).getDirectory(),
-                            listJadwal.get(9).getId_jadwal(),listJadwal.get(9).getTanggal(),
-                            listJadwal.get(10).getId_jadwal(),listJadwal.get(10).getTanggal(),
-                            listJadwal.get(11).getId_jadwal(),listJadwal.get(11).getTanggal()).setVisible(true);
+                    new DetailHome(id_lgn, listMovies.get(3).getJudul(),listMovies.get(3).getDirectory(),
+                            listJadwal.get(9).getId_jadwal(),listJadwal.get(9).getTanggal(), listJadwal.get(9).getId_studio(),
+                            listJadwal.get(10).getId_jadwal(),listJadwal.get(10).getTanggal(), listJadwal.get(10).getId_studio(),
+                            listJadwal.get(11).getId_jadwal(),listJadwal.get(11).getTanggal(), listJadwal.get(11).getId_studio()).setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -155,10 +157,10 @@ public class Home2 extends JFrame{
             @Override
             public void mouseClicked(MouseEvent me) {
                 try {
-                    new DetailHome(listMovies.get(4).getJudul(),listMovies.get(4).getDirectory(),
-                            listJadwal.get(12).getId_jadwal(),listJadwal.get(12).getTanggal(),
-                            listJadwal.get(13).getId_jadwal(),listJadwal.get(13).getTanggal(),
-                            listJadwal.get(14).getId_jadwal(),listJadwal.get(14).getTanggal()).setVisible(true);
+                    new DetailHome(id_lgn, listMovies.get(4).getJudul(),listMovies.get(4).getDirectory(),
+                            listJadwal.get(12).getId_jadwal(),listJadwal.get(12).getTanggal(), listJadwal.get(12).getId_studio(),
+                            listJadwal.get(13).getId_jadwal(),listJadwal.get(13).getTanggal(), listJadwal.get(13).getId_studio(),
+                            listJadwal.get(14).getId_jadwal(),listJadwal.get(14).getTanggal(), listJadwal.get(14).getId_studio()).setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -173,10 +175,10 @@ public class Home2 extends JFrame{
             @Override
             public void mouseClicked(MouseEvent me) {
                 try {
-                    new DetailHome(listMovies.get(5).getJudul(),listMovies.get(5).getDirectory(),
-                            listJadwal.get(15).getId_jadwal(),listJadwal.get(15).getTanggal(),
-                            listJadwal.get(16).getId_jadwal(),listJadwal.get(16).getTanggal(),
-                            listJadwal.get(17).getId_jadwal(),listJadwal.get(17).getTanggal()).setVisible(true);
+                    new DetailHome(id_lgn, listMovies.get(5).getJudul(),listMovies.get(5).getDirectory(),
+                            listJadwal.get(15).getId_jadwal(),listJadwal.get(15).getTanggal(), listJadwal.get(15).getId_studio(),
+                            listJadwal.get(16).getId_jadwal(),listJadwal.get(16).getTanggal(), listJadwal.get(16).getId_studio(),
+                            listJadwal.get(17).getId_jadwal(),listJadwal.get(17).getTanggal(), listJadwal.get(17).getId_studio()).setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -255,12 +257,12 @@ public class Home2 extends JFrame{
       }
     
     public void FoodBeverage() throws IOException{
-        new FoodBeverage().setVisible(true);
+        new FoodBeverage(id_lgn).setVisible(true);
         this.setVisible(false);
     }
     
     public void TopUp() throws IOException{
-        new TopUpForm().setVisible(true);
+        new TopUpForm(id_lgn).setVisible(true);
         this.setVisible(false);
     }
 

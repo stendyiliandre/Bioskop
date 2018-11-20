@@ -7,6 +7,7 @@ package view;
 
 import database.JadwalMovie;
 import database.MoviesDao;
+import database.StudioMovie;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -32,31 +33,45 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import tiket.Jadwal;
 import tiket.Movies;
+import tiket.Studio;
 
 /**
  *
  * @author kevin suwanda
  */
 public class DetailHome extends JFrame{
+    List<Studio> listStudio = StudioMovie.selectAllStudio();
+    String id_lgn;
     int id_jadwal;
+    int id_studio;
+    int temp;
+    int id_user=0;
     String judul;
     String directory;
     int id;
     String tanggal;
+    int ids;
+    
     int id1;
     String tanggal1;
+    int ids1;
+    
     int id2;
     String tanggal2;
-    int id_user=0;
-    public DetailHome(String judul, String directory, int id, String tanggal, int id0, String tanggal0, int id1, String tanggal1) throws IOException {
+    int ids2;
+    public DetailHome(String id_lgn, String judul, String directory, int id, String tanggal, int ids, int id0, String tanggal0, int ids0, int id1, String tanggal1, int ids1) throws IOException {
+        this.id_lgn = id_lgn;
         this.judul=judul;
         this.directory=directory;
         this.id=id;
         this.tanggal=tanggal;
+        this.ids = ids;
         this.id1=id0;
         this.tanggal1=tanggal0;
+        this.ids1 = ids0;
         this.id2=id1;
         this.tanggal2=tanggal1;
+        this.ids2 = ids1;
         initComponents();
     }
     
@@ -140,19 +155,23 @@ public class DetailHome extends JFrame{
     }
     
     public void Home2() throws IOException{
-        new Home2().setVisible(true);
+        new Home2(id_lgn).setVisible(true);
         this.setVisible(false);
     }
     
     public void Next() throws IOException{
         if (cmPilih.getSelectedItem().toString() == tanggal) {
-            id_jadwal = id;
+            this.id_jadwal = id;
+            this.id_studio = ids;
         } else if (cmPilih.getSelectedItem().toString() == tanggal1) {
-            id_jadwal = id1;
+            this.id_jadwal = id1;
+            this.id_studio = ids1;
         } else if (cmPilih.getSelectedItem().toString() == tanggal2) {
-            id_jadwal = id2;
+            this.id_jadwal = id2;
+            this.id_studio = ids2;
         }
-        new LayoutStudio(id_jadwal, judul, cmPilih.getSelectedItem().toString(),"1").setVisible(true);
+        temp = id_studio - 1;
+        new LayoutStudio(id_lgn, id_jadwal, listStudio.get(temp).getId_room(), judul, cmPilih.getSelectedItem().toString(),"1").setVisible(true);
         this.setVisible(false);
     }
     

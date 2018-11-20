@@ -34,16 +34,17 @@ import javax.swing.WindowConstants;
  * @author Stendy Iliandre
  */
 public class DetailFood extends JFrame {
-
+    String id_lgn;
     String menu;
     int harga;
     String directory;
     int n = 0;
 
-    public DetailFood(String menu, int harga, String directory) throws IOException {
+    public DetailFood(String id_lgn, String menu, int harga, String directory) throws IOException {
         this.menu = menu;
         this.harga = harga;
         this.directory = directory;
+        this.id_lgn = id_lgn;
         initComponents();
     }
 
@@ -139,12 +140,12 @@ public class DetailFood extends JFrame {
     }
 
     public void FoodBeverage() throws IOException {
-        new FoodBeverage().setVisible(true);
+        new FoodBeverage(id_lgn).setVisible(true);
         this.setVisible(false);
     }
 
     public void Home2() throws IOException {
-        new Home2().setVisible(true);
+        new Home2(id_lgn).setVisible(true);
         this.setVisible(false);
     }
 

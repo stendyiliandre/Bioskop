@@ -31,8 +31,10 @@ import tiket.Makanan;
  * @author Stendy Iliandre
  */
 public class FoodBeverage extends JFrame {
+    String id_lgn;
     List<Makanan> listFood = FoodDao.selectAllMakanan();
-    public FoodBeverage() throws IOException {
+    public FoodBeverage(String id_lgn) throws IOException {
+        this.id_lgn = id_lgn;
         initComponents();
     }
 
@@ -41,7 +43,7 @@ public class FoodBeverage extends JFrame {
         this.setSize(900, 720);
         this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(null);
-        this.setTitle("Home");
+        this.setTitle("Food & Beverage");
         this.setResizable(false);
         this.setLayout(null);
 
@@ -76,7 +78,7 @@ public class FoodBeverage extends JFrame {
             @Override
             public void mouseClicked(MouseEvent me) {
                 try {
-                    new DetailFood(listFood.get(0).getMenu(), listFood.get(0).getHarga(), listFood.get(0).getDirectory()).setVisible(true);
+                    new DetailFood(id_lgn, listFood.get(0).getMenu(), listFood.get(0).getHarga(), listFood.get(0).getDirectory()).setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -92,7 +94,7 @@ public class FoodBeverage extends JFrame {
             @Override
             public void mouseClicked(MouseEvent me) {
                 try {
-                    new DetailFood(listFood.get(1).getMenu(), listFood.get(1).getHarga(), listFood.get(1).getDirectory()).setVisible(true);
+                    new DetailFood(id_lgn, listFood.get(1).getMenu(), listFood.get(1).getHarga(), listFood.get(1).getDirectory()).setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -108,7 +110,7 @@ public class FoodBeverage extends JFrame {
             @Override
             public void mouseClicked(MouseEvent me) {
                 try {
-                    new DetailFood(listFood.get(2).getMenu(), listFood.get(2).getHarga(), listFood.get(2).getDirectory()).setVisible(true);
+                    new DetailFood(id_lgn, listFood.get(2).getMenu(), listFood.get(2).getHarga(), listFood.get(2).getDirectory()).setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -124,7 +126,7 @@ public class FoodBeverage extends JFrame {
             @Override
             public void mouseClicked(MouseEvent me) {
                 try {
-                    new DetailFood(listFood.get(3).getMenu(), listFood.get(3).getHarga(), listFood.get(3).getDirectory()).setVisible(true);
+                    new DetailFood(id_lgn, listFood.get(3).getMenu(), listFood.get(3).getHarga(), listFood.get(3).getDirectory()).setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -140,7 +142,7 @@ public class FoodBeverage extends JFrame {
             @Override
             public void mouseClicked(MouseEvent me) {
                 try {
-                    new DetailFood(listFood.get(4).getMenu(), listFood.get(4).getHarga(), listFood.get(4).getDirectory()).setVisible(true);
+                    new DetailFood(id_lgn, listFood.get(4).getMenu(), listFood.get(4).getHarga(), listFood.get(4).getDirectory()).setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -156,7 +158,7 @@ public class FoodBeverage extends JFrame {
             @Override
             public void mouseClicked(MouseEvent me) {
                 try {
-                    new DetailFood(listFood.get(5).getMenu(), listFood.get(5).getHarga(), listFood.get(5).getDirectory()).setVisible(true);
+                    new DetailFood(id_lgn, listFood.get(5).getMenu(), listFood.get(5).getHarga(), listFood.get(5).getDirectory()).setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -221,7 +223,7 @@ public class FoodBeverage extends JFrame {
     }
 
     public void Home() throws IOException{
-        new Home2().setVisible(true);
+        new Home2(id_lgn).setVisible(true);
         this.setVisible(false);
     }
     

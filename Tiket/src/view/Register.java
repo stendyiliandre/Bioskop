@@ -252,17 +252,19 @@ public class Register extends JFrame {
             JOptionPane.showMessageDialog(this, "Please Enter Your Email","Validation Failed",JOptionPane.WARNING_MESSAGE);
             return;
         }
+        
         int i;
         boolean cek = true;
         for(i = 0; i < listUser.size(); i++){
-            if(uname.equals(listUser.get(i).id_lgn)){
-                JOptionPane.showMessageDialog(this,"Silahkan Ganti Id Anda","Fail",JOptionPane.INFORMATION_MESSAGE);
-                new Register().setVisible(true);
+            if(uname.equals(listUser.get(i).id_lgn) && pass.equals(listUser.get(i).password)){
+                JOptionPane.showMessageDialog(this,"Id Telah Digunakan Silahkan Ganti","Fail",JOptionPane.INFORMATION_MESSAGE);
+                new Home2(listUser.get(i).id_lgn).setVisible(true);
                 this.setVisible(false);
                 cek = false;
                 return;
             } 
         }
+        
         if(uname.length() != 0 && pass.length() != 0 && namaa.length() != 0 && no_hp.length() != 0 && lahir.length() != 0 && emaill.length() != 0 && cek == true){
             int confirm = JOptionPane.showConfirmDialog(null, "Tambah Data?", "Konfirmasi", JOptionPane.YES_OPTION);
             if(confirm == JOptionPane.YES_OPTION){

@@ -161,12 +161,14 @@ public class LoginForm extends JFrame {
         int i;
         for(i = 0; i < listUser.size(); i++){
             if(uname.equals(listUser.get(i).id_lgn) && pass.equals(listUser.get(i).password)){
-                JOptionPane.showMessageDialog(this,"Welcome aboard sir!","Succes",JOptionPane.INFORMATION_MESSAGE);
-                new Home2().setVisible(true);
-                this.setVisible(false);
-                return;
-            } else {
-                JOptionPane.showMessageDialog(this,"Id atau Password Salah");
+                if(pass.equals(listUser.get(i).password)){
+                    JOptionPane.showMessageDialog(this,"Welcome aboard sir!","Succes",JOptionPane.INFORMATION_MESSAGE);
+                    new Home2(listUser.get(i).id_lgn).setVisible(true);
+                    this.setVisible(false);
+                    return;
+                } else {
+                    JOptionPane.showMessageDialog(this,"Id atau Password Salah");
+                }
             }
         }
     }
