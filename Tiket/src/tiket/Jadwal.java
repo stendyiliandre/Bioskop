@@ -12,6 +12,15 @@ package tiket;
 public class Jadwal {
     private int id_jadwal;
     private String tanggal;
+    private int id_studio;
+
+    public int getId_studio() {
+        return id_studio;
+    }
+
+    public void setId_studio(int id_studio) {
+        this.id_studio = id_studio;
+    }
     Studio studio;
 
     public int getId_jadwal() {
