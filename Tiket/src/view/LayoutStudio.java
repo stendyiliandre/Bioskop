@@ -29,7 +29,6 @@ import tiket.Transaksi;
  * @author William Johann
  */
 public class LayoutStudio extends JFrame {
-
     String id_lgn;
     int id_jadwal;
     String id_room;
@@ -37,7 +36,7 @@ public class LayoutStudio extends JFrame {
     String jadwal[];
     List<Transaksi> listTransaksi = TransaksiDao.selectAllTransaksi();
 
-    public LayoutStudio(String id_lgn, int id_jadwal, String id_room, String judul, String jadwal, String id_user) {
+    public LayoutStudio(String id_lgn, int id_jadwal, String id_room, String judul, String jadwal) {
         this.id_lgn = id_lgn;
         this.judul = judul;
         this.id_jadwal = id_jadwal;
@@ -61,8 +60,7 @@ public class LayoutStudio extends JFrame {
     private JPanel pnlPanel4;
     private JPanel pnlBesar;
     private JLabel lblLayar;
-    private JButton next;
-    private JButton btnbuy;
+    private JButton btnBuy;
     private JButton btnHome;
     public ArrayList<Kursi> arrayKursi;
     public ArrayList<String> arrayTemp;
@@ -70,6 +68,7 @@ public class LayoutStudio extends JFrame {
     private void initComponents() {
         arrayKursi = new ArrayList<>();
         arrayTemp = new ArrayList<>();
+        this.setTitle("Layout Studio");
         this.setResizable(false);
         this.setSize(1000, 1000);
         this.setLocationRelativeTo(null);
@@ -174,7 +173,6 @@ public class LayoutStudio extends JFrame {
                 pnlPanel2.add(k);
             }
         }
-
         pnlPanel3 = new JPanel();
         pnlPanel3.setBounds(805, 125, 120, 700);
         pnlPanel3.setLayout(new GridLayout(10, 2, 5, 5));
@@ -185,14 +183,13 @@ public class LayoutStudio extends JFrame {
                 Kursi k = new Kursi("C" + i + j);
                 k.id = "C" + i + j;
                 arrayKursi.add(k);
-
+                k.setBackground(Color.white);
                 k.setHorizontalAlignment(JLabel.CENTER);
                 k.setOpaque(true);
                 for (int l = 0; l < listTransaksi.size(); l++) {
                     if (listTransaksi.get(l).kursi.equals(k.id) && listTransaksi.get(l).id_jadwal == id_jadwal) {
                         k.setBackground(Color.gray);
                     } else {
-                        k.setBackground(Color.white);
                         k.addMouseListener(new MouseAdapter() {
                             @Override
                             public void mouseClicked(MouseEvent me) {
@@ -217,9 +214,9 @@ public class LayoutStudio extends JFrame {
             }
         }
 
-        btnbuy = new JButton("Next");
-        btnbuy.setBounds(800, 875, 125, 50);
-        btnbuy.addMouseListener(new MouseAdapter() {
+        btnBuy = new JButton("Next");
+        btnBuy.setBounds(800, 875, 125, 50);
+        btnBuy.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 for (int i = 0; i < arrayTemp.size(); i++) {
@@ -246,6 +243,7 @@ public class LayoutStudio extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 try {
+                    setVisible(false);
                     new Home2(id_lgn).setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(LayoutStudio.class.getName()).log(Level.SEVERE, null, ex);
@@ -261,7 +259,8 @@ public class LayoutStudio extends JFrame {
             }
         }
 
-        pnlBesar.add(btnbuy);
+        pnlBesar.add(btnBuy);
+        pnlBesar.add(btnHome);
         pnlBesar.add(pnlPanel3);
         pnlBesar.add(pnlPanel2);
         pnlBesar.add(pnlPanel1);

@@ -5,6 +5,7 @@
  */
 package view;
 
+import database.HistoryDao;
 import database.TransaksiDao;
 import java.awt.Color;
 import java.awt.Font;
@@ -18,6 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import tiket.History;
 import tiket.Transaksi;
 
 /**
@@ -37,7 +39,7 @@ public class Bayar extends JFrame{
         this.judul=judul;
         this.jam=jam;
         this.tanggal=tanggal;
-        this.id_jadwal=(idJadwal);
+        this.id_jadwal=idJadwal;
         this.id_room = idRoom;
         for (int i = 0; i < selected.size(); i++) {
             kursi.add(selected.get(i));
@@ -65,9 +67,11 @@ public class Bayar extends JFrame{
     JLabel lblJumlah;
     JLabel lblIsiJumlah;
     JButton btnBayar;
+    JButton btnBack;
     
     private void initComponent(){
-        this.setSize(400,435);
+        this.setTitle("Payment");
+        this.setSize(400,450);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setResizable(false);
@@ -140,7 +144,9 @@ public class Bayar extends JFrame{
         lblTotal.setBounds(15,210,75, 35);
         lblIsiTotal.setBounds(80,210,200,35);
         btnBayar=new JButton("Buy");
-        btnBayar.setBounds(250, 235, 125, 40);
+        btnBayar.setBounds(250, 240, 125, 40);
+        btnBack = new JButton("Back");
+        btnBack.setBounds(20, 240, 125, 40);
         
         pnlIsi.add(lblJudul);
         pnlIsi.add(lblIsiJudul);
@@ -157,6 +163,7 @@ public class Bayar extends JFrame{
         pnlIsi.add(lblTotal);
         pnlIsi.add(lblIsiTotal);
         pnlIsi.add(btnBayar);
+        pnlIsi.add(btnBack);
 
         this.add(pnlBesar);
         this.add(pnlIsi);
@@ -170,14 +177,21 @@ public class Bayar extends JFrame{
                     t.setKursi(kursi.get(i));
                     TransaksiDao.insertData(t);
                     System.out.println("berhasil");
-                    setVisible(false);
-                    try {
-                        new Home2(id_lgn).setVisible(true);
-                    } catch (IOException ex) {
-                        Logger.getLogger(Bayar.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                  
+                    setVisible(false); 
                 }
+                try {
+                    new Home2(id_lgn).setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(Bayar.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        
+        btnBack.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                setVisible(false);
+                new LayoutStudio(id_lgn,id_jadwal,id_room,judul,tanggal+" "+jam).setVisible(true);
             }
             
         });
