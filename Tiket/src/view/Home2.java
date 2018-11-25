@@ -86,8 +86,7 @@ public class Home2 extends JFrame{
                     new DetailHome(id_lgn, listMovies.get(0).getJudul(),listMovies.get(0).getDirectory(),
                             listJadwal.get(0).getId_jadwal(),listJadwal.get(0).getTanggal(), listJadwal.get(0).getId_studio(),
                             listJadwal.get(1).getId_jadwal(),listJadwal.get(1).getTanggal(), listJadwal.get(1).getId_studio(),
-                            listJadwal.get(2).getId_jadwal(),listJadwal.get(2).getTanggal(), listJadwal.get(2).getId_studio(),
-                            listMovies.get(0).getGenre(),listMovies.get(0).getDurasi()).setVisible(true);
+                            listJadwal.get(2).getId_jadwal(),listJadwal.get(2).getTanggal(), listJadwal.get(2).getId_studio()).setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -105,9 +104,7 @@ public class Home2 extends JFrame{
                     new DetailHome(id_lgn, listMovies.get(1).getJudul(),listMovies.get(1).getDirectory(),
                             listJadwal.get(3).getId_jadwal(),listJadwal.get(3).getTanggal(), listJadwal.get(3).getId_studio(),
                             listJadwal.get(4).getId_jadwal(),listJadwal.get(4).getTanggal(), listJadwal.get(4).getId_studio(),
-                            listJadwal.get(5).getId_jadwal(),listJadwal.get(5).getTanggal(), listJadwal.get(5).getId_studio(),
-                            listMovies.get(1).getGenre(),listMovies.get(1).getDurasi()).setVisible(true);
-                            
+                            listJadwal.get(5).getId_jadwal(),listJadwal.get(5).getTanggal(), listJadwal.get(5).getId_studio()).setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -125,8 +122,7 @@ public class Home2 extends JFrame{
                     new DetailHome(id_lgn, listMovies.get(2).getJudul(),listMovies.get(2).getDirectory(),
                             listJadwal.get(6).getId_jadwal(),listJadwal.get(6).getTanggal(), listJadwal.get(6).getId_studio(),
                             listJadwal.get(7).getId_jadwal(),listJadwal.get(7).getTanggal(), listJadwal.get(7).getId_studio(),
-                            listJadwal.get(8).getId_jadwal(),listJadwal.get(8).getTanggal(), listJadwal.get(8).getId_studio(),
-                            listMovies.get(2).getGenre(),listMovies.get(2).getDurasi()).setVisible(true);
+                            listJadwal.get(8).getId_jadwal(),listJadwal.get(8).getTanggal(), listJadwal.get(8).getId_studio()).setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -144,8 +140,7 @@ public class Home2 extends JFrame{
                     new DetailHome(id_lgn, listMovies.get(3).getJudul(),listMovies.get(3).getDirectory(),
                             listJadwal.get(9).getId_jadwal(),listJadwal.get(9).getTanggal(), listJadwal.get(9).getId_studio(),
                             listJadwal.get(10).getId_jadwal(),listJadwal.get(10).getTanggal(), listJadwal.get(10).getId_studio(),
-                            listJadwal.get(11).getId_jadwal(),listJadwal.get(11).getTanggal(), listJadwal.get(11).getId_studio(),
-                            listMovies.get(3).getGenre(),listMovies.get(3).getDurasi()).setVisible(true);
+                            listJadwal.get(11).getId_jadwal(),listJadwal.get(11).getTanggal(), listJadwal.get(11).getId_studio()).setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -163,8 +158,7 @@ public class Home2 extends JFrame{
                     new DetailHome(id_lgn, listMovies.get(4).getJudul(),listMovies.get(4).getDirectory(),
                             listJadwal.get(12).getId_jadwal(),listJadwal.get(12).getTanggal(), listJadwal.get(12).getId_studio(),
                             listJadwal.get(13).getId_jadwal(),listJadwal.get(13).getTanggal(), listJadwal.get(13).getId_studio(),
-                            listJadwal.get(14).getId_jadwal(),listJadwal.get(14).getTanggal(), listJadwal.get(14).getId_studio(),
-                            listMovies.get(4).getGenre(),listMovies.get(4).getDurasi()).setVisible(true);
+                            listJadwal.get(14).getId_jadwal(),listJadwal.get(14).getTanggal(), listJadwal.get(14).getId_studio()).setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -182,8 +176,7 @@ public class Home2 extends JFrame{
                     new DetailHome(id_lgn, listMovies.get(5).getJudul(),listMovies.get(5).getDirectory(),
                             listJadwal.get(15).getId_jadwal(),listJadwal.get(15).getTanggal(), listJadwal.get(15).getId_studio(),
                             listJadwal.get(16).getId_jadwal(),listJadwal.get(16).getTanggal(), listJadwal.get(16).getId_studio(),
-                            listJadwal.get(17).getId_jadwal(),listJadwal.get(17).getTanggal(), listJadwal.get(17).getId_studio(),
-                            listMovies.get(5).getGenre(),listMovies.get(5).getDurasi()).setVisible(true);
+                            listJadwal.get(17).getId_jadwal(),listJadwal.get(17).getTanggal(), listJadwal.get(17).getId_studio()).setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -215,6 +208,18 @@ public class Home2 extends JFrame{
         lblText6.setBounds(710, 0, 300, 25);
         lblText6.setFont(new Font("Arial",Font.BOLD,14));       
         
+        btnHistory = new JButton ("History");
+        btnHistory.setBounds(400, 290, 110, 25);
+        btnHistory.setFont(new Font("Arial",Font.BOLD,14));
+        btnHistory.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                   new HistoryForm(id_lgn).setVisible(true);
+                   setVisible(false);
+            }
+            
+        });
+        
         btnTopUp = new JButton("Top Up");
         btnTopUp.setBounds(540, 290, 110, 25);
         btnTopUp.setFont(new Font("Arial",Font.BOLD,14));
@@ -244,6 +249,7 @@ public class Home2 extends JFrame{
             }
         });
         pnlPanel4.add(btnUpdate);
+        pnlPanel4.add(btnHistory);
         
         pnlPanel1.add(lblText1);
         pnlPanel1.add(lblText2);
@@ -301,4 +307,5 @@ public class Home2 extends JFrame{
     JButton btnRegister;
     JButton btnTopUp;
     JButton btnUpdate;
+    JButton btnHistory;
 }
