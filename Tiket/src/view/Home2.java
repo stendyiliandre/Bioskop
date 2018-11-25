@@ -5,7 +5,7 @@
  */
 package view;
 
-import database.JadwalMovie;
+import database.JadwalMovieDao;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -26,10 +26,7 @@ import javax.swing.WindowConstants;
 import tiket.Movies;
 import database.MoviesDao;
 import java.util.List;
-import javax.swing.JScrollPane;
 import tiket.Jadwal;
-import view.Register;
-import view.TopUpForm;
 
 /**
  *
@@ -37,7 +34,7 @@ import view.TopUpForm;
  */
 public class Home2 extends JFrame{
     List<Movies> listMovies = MoviesDao.selectAllMovies();
-    List<Jadwal> listJadwal = JadwalMovie.selectAllJadwal();
+    List<Jadwal> listJadwal = JadwalMovieDao.selectAllJadwal();
     String id_lgn;
     public Home2(String id_lgn) throws IOException{
         this.id_lgn = id_lgn;
@@ -226,7 +223,7 @@ public class Home2 extends JFrame{
         pnlPanel4.add(btnFb);
         
         btnTopUp = new JButton("Top Up");
-        btnTopUp.setBounds(200, 290, 110, 25);
+        btnTopUp.setBounds(540, 290, 110, 25);
         btnTopUp.setFont(new Font("Arial",Font.BOLD,14));
         btnTopUp.addMouseListener(new MouseAdapter(){
             @Override
@@ -239,6 +236,21 @@ public class Home2 extends JFrame{
             }
         });
         pnlPanel4.add(btnTopUp);
+        
+        btnUpdate = new JButton("Update User");
+        btnUpdate.setBounds(680, 290, 170, 25);
+        btnUpdate.setFont(new Font("Arial",Font.BOLD,14));
+        btnUpdate.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                try {
+                    Update();
+                } catch (IOException ex) {
+                    Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        pnlPanel4.add(btnUpdate);
         
         pnlPanel1.add(lblText1);
         pnlPanel1.add(lblText2);
@@ -255,7 +267,10 @@ public class Home2 extends JFrame{
         pnlPanel4.add(lblMovie6);
 
       }
-    
+    public void Update() throws IOException{
+        new UpdateUser(id_lgn).setVisible(true);
+        this.setVisible(false);
+    } 
     public void FoodBeverage() throws IOException{
         new FoodBeverage(id_lgn).setVisible(true);
         this.setVisible(false);
@@ -297,5 +312,5 @@ public class Home2 extends JFrame{
     JButton btnLogin;
     JButton btnRegister;
     JButton btnTopUp;
-    
+    JButton btnUpdate;
 }

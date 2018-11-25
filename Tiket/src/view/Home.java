@@ -5,7 +5,7 @@
  */
 package view;
 
-import database.JadwalMovie;
+import database.JadwalMovieDao;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;

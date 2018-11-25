@@ -34,6 +34,7 @@ public class LayoutStudio extends JFrame {
     String id_room;
     String judul;
     String jadwal[];
+    int saldo;
     List<Transaksi> listTransaksi = TransaksiDao.selectAllTransaksi();
 
     public LayoutStudio(String id_lgn, int id_jadwal, String id_room, String judul, String jadwal) {
@@ -186,11 +187,7 @@ public class LayoutStudio extends JFrame {
                 k.setBackground(Color.white);
                 k.setHorizontalAlignment(JLabel.CENTER);
                 k.setOpaque(true);
-                for (int l = 0; l < listTransaksi.size(); l++) {
-                    if (listTransaksi.get(l).kursi.equals(k.id) && listTransaksi.get(l).id_jadwal == id_jadwal) {
-                        k.setBackground(Color.gray);
-                    } else {
-                        k.addMouseListener(new MouseAdapter() {
+                k.addMouseListener(new MouseAdapter() {
                             @Override
                             public void mouseClicked(MouseEvent me) {
                                 if (k.getBackground().equals(Color.red)) {
@@ -208,6 +205,10 @@ public class LayoutStudio extends JFrame {
                                 }
                             }
                         });
+
+                for (int l = 0; l < listTransaksi.size(); l++) {
+                    if (listTransaksi.get(l).kursi.equals(k.id) && listTransaksi.get(l).id_jadwal == id_jadwal) {
+                        k.setBackground(Color.gray);
                     }
                 }
                 pnlPanel3.add(k);
@@ -224,15 +225,15 @@ public class LayoutStudio extends JFrame {
                 }
                 setVisible(false);
                 int dialogButton = JOptionPane.YES_NO_OPTION;
-                JOptionPane.showConfirmDialog(null, "Buy Food&Beverage?", "WARNING", dialogButton);
-                if (dialogButton == JOptionPane.NO_OPTION) {
+                
+                if (JOptionPane.showConfirmDialog(null, "Buy Food&Beverage?", "WARNING", dialogButton) == JOptionPane.YES_OPTION) {
                     try {
                         new FoodBeverage(id_lgn).setVisible(true);
                     } catch (IOException ex) {
                         Logger.getLogger(LayoutStudio.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
-                    new Bayar(id_lgn, arrayTemp, judul, jadwal[1], jadwal[0], id_jadwal, id_room).setVisible(true);
+                    new Bayar(id_lgn, arrayTemp, judul, jadwal[1], jadwal[0], id_jadwal, id_room, saldo).setVisible(true);
                 }
             }
         });
