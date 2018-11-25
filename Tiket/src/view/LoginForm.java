@@ -5,9 +5,8 @@
  */
 package view;
 
-import database.Login;
+import database.LoginDao;
 import tiket.User;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
@@ -29,15 +28,13 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
-import view.Home;
-import view.Register;
 /**
  *
  * @author kevin suwanda
  */
 
 public class LoginForm extends JFrame {
-    List<User> listUser = Login.selectAllUser();
+    List<User> listUser = LoginDao.selectAllUser();
     public LoginForm() throws IOException{
         initComponents();
     }

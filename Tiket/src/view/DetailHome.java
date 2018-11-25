@@ -5,15 +5,10 @@
  */
 package view;
 
-import database.JadwalMovie;
-import database.MoviesDao;
 import database.StudioMovie;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -29,10 +24,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.WindowConstants;
-import tiket.Jadwal;
-import tiket.Movies;
 import tiket.Studio;
 
 /**
@@ -48,6 +40,8 @@ public class DetailHome extends JFrame{
     int id_user=0;
     String judul;
     String directory;
+    String genre;
+    String durasi;
     int id;
     String tanggal;
     int ids;
@@ -59,7 +53,8 @@ public class DetailHome extends JFrame{
     int id2;
     String tanggal2;
     int ids2;
-    public DetailHome(String id_lgn, String judul, String directory, int id, String tanggal, int ids, int id0, String tanggal0, int ids0, int id1, String tanggal1, int ids1) throws IOException {
+    public DetailHome(String id_lgn, String judul, String directory, int id, String tanggal, int ids, 
+            int id0, String tanggal0, int ids0, int id1, String tanggal1, int ids1, String genre, String durasi) throws IOException {
         this.id_lgn = id_lgn;
         this.judul=judul;
         this.directory=directory;
@@ -72,6 +67,8 @@ public class DetailHome extends JFrame{
         this.id2=id1;
         this.tanggal2=tanggal1;
         this.ids2 = ids1;
+        this.genre = genre;
+        this.durasi = durasi;
         initComponents();
     }
     
@@ -99,6 +96,16 @@ public class DetailHome extends JFrame{
         lblText1.setBounds(120, 0, 300, 25);
         lblText1.setFont(new Font("Arial",Font.BOLD,14));
         pnlPanel1.add(lblText1);
+        
+        lblgenre = new JLabel(genre);
+        lblgenre.setBounds(220, 0, 300, 25);
+        lblgenre.setFont(new Font("Arial",Font.BOLD,14));
+        pnlPanel1.add(lblgenre);
+        
+        lbldurasi = new JLabel(durasi);
+        lbldurasi.setBounds(320, 0, 300, 25);
+        lbldurasi.setFont(new Font("Arial",Font.BOLD,14));
+        pnlPanel1.add(lbldurasi);
         
         txtTgl = new JLabel("TANGGAL");
         txtTgl.setBounds(320, 30, 100, 10);
@@ -171,7 +178,7 @@ public class DetailHome extends JFrame{
             this.id_studio = ids2;
         }
         temp = id_studio - 1;
-        new LayoutStudio(id_lgn, id_jadwal, listStudio.get(temp).getId_room(), judul, cmPilih.getSelectedItem().toString(),"1").setVisible(true);
+        new LayoutStudio(id_lgn, id_jadwal, listStudio.get(temp).getId_room(), judul, cmPilih.getSelectedItem().toString()).setVisible(true);
         this.setVisible(false);
     }
     
@@ -195,6 +202,8 @@ public class DetailHome extends JFrame{
     JLabel lblRoll;
     JButton btnNext;
     JComboBox cmPilih;
+    JLabel lblgenre;
+    JLabel lbldurasi;
 }
 
 

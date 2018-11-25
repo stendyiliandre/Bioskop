@@ -5,9 +5,7 @@
  */
 package view;
 
-import database.ConnectionManager;
-import database.Login;
-import database.TopUpUser;
+import database.TopUpUserDao;
 import tiket.*;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -17,10 +15,6 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -30,7 +24,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
@@ -39,24 +32,7 @@ import javax.swing.WindowConstants;
  * @author kevin suwanda
  */
 public class TopUpForm extends JFrame{
-    List<HisTopUp> listTp = TopUpUser.selectAllTopUp();
     String id_lgn;
-    public static void addTopUp(HisTopUp tu){
-        ConnectionManager conn = new ConnectionManager();
-        Connection con = conn.logOn();
-        String query = "INSERT INTO histopup(id_user,jumlah,jenis) VALUES (?,?,?)";
-        try {
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, tu.getId_lgn());
-            st.setString(2, tu.getJumlah());
-            st.setString(3, tu.getJenis());
-            
-            st.execute();
-        } catch(SQLException e) {
-            e.printStackTrace();
-        }
-        conn.logOff();
-    }
     public TopUpForm(String id_lgn) throws IOException{
         this.id_lgn = id_lgn;
         initComponents();
@@ -144,22 +120,23 @@ public class TopUpForm extends JFrame{
         String jenis = paytxt.getText().trim();
         
         if(jml.length() == 0){
-            JOptionPane.showMessageDialog(this, "Please Enter Your Username","Validation Failed",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Please Enter Correct Value","Validation Failed",JOptionPane.WARNING_MESSAGE);
             return;
         }
         if(jenis.length() == 0){
-            JOptionPane.showMessageDialog(this, "Please Enter Your Password","Validation Failed",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Please Enter Correct Value","Validation Failed",JOptionPane.WARNING_MESSAGE);
             return;
         }
         if(jml.length() != 0 && jenis.length() != 0){
-            int confirm = JOptionPane.showConfirmDialog(null, "Tambah Data?", "Konfirmasi", JOptionPane.YES_OPTION);
+            int confirm = JOptionPane.showConfirmDialog(null, "Top Up?", "Konfirmasi", JOptionPane.YES_OPTION);
             if(confirm == JOptionPane.YES_OPTION){
                 String id = id_lgn;
-                String jmlh = jumlahtxt.getText() + "";
+                int jmlh = Integer.parseInt(jumlahtxt.getText());
                 String tipe =  paytxt.getText() + "";
-                HisTopUp tp = new HisTopUp(id,jml,jenis);
+                HisTopUp tp = new HisTopUp(id,jmlh,jenis);
                 JOptionPane.showMessageDialog(this, "Terima Kasih Telah TopUp","Sukses",JOptionPane.INFORMATION_MESSAGE);
-                TopUpForm.addTopUp(tp);
+                TopUpUserDao.addTopUp(tp, id_lgn);
+                TopUpUserDao.addSaldo(tp, id_lgn);
                 try {
                     Home2();
                 } catch (IOException ex) {

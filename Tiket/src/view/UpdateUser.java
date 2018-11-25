@@ -6,18 +6,12 @@
 package view;
 
 
-import tiket.*;
-import view.LoginForm;
-import view.Home;
-import tiket.User;
-import database.ConnectionManager;
 import database.LoginDao;
-import database.RegisterDao;
+import tiket.User;
+import database.UpdateUserDao;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -41,151 +35,123 @@ import javax.swing.WindowConstants;
  *
  * @author kevin suwanda
  */
-public class Register extends JFrame {
+public class UpdateUser extends JFrame {
     List<User> listUser = LoginDao.selectAllUser();
-
-    public Register() throws IOException{
+    String id_lgn;
+    public UpdateUser(String id_lgn) throws IOException{
+        this.id_lgn = id_lgn;
         initComponents();
     }
 
     private void initComponents() throws IOException {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        this.setSize(430,500);
+        this.setSize(400,420);
         this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(null);
-        this.setTitle("Register");
+        this.setTitle("Update User");
         this.setResizable(false);
         
         pnlPanel1 = new JPanel();
-        pnlPanel1.setSize(430,100);
+        pnlPanel1.setSize(400,100);
         pnlPanel1.setBackground(null);
         add(pnlPanel1);
                 
         icon1 = new JLabel();
-        icon1.setBounds(0,0,800,100);
+        icon1.setBounds(0,0,400,100);
         icon1.setLayout(null);
-        icon1.setIcon(new ImageIcon(resizeImage("img/gambar1.jpg",430,100)));
+        icon1.setIcon(new ImageIcon(resizeImage("img/gambar1.jpg",400,100)));
         pnlPanel1.add(icon1);
         
         pnlPanel2 = new JPanel();
         pnlPanel2.setLayout(null);
-        pnlPanel2.setBounds(0,0,800,350);
+        pnlPanel2.setBounds(0,0,400,350);
         add(pnlPanel2);
         
-        id = new JLabel("ID : ");
-        id.setBounds(30,130,110,30);
-        id.setFont(new Font("Arial",Font.BOLD,15));
-        pnlPanel2.add(id);
-        
-        idtxt = new JTextField(7);
-        idtxt.setBounds(120,132,230,25);
-        pnlPanel2.add(idtxt);
-        
         password = new JLabel("Password : ");
-        password.setBounds(30,170,110,30);
+        password.setBounds(30,130,110,30);
         password.setFont(new Font("Arial",Font.BOLD,15));
         pnlPanel2.add(password);
         
         passtxt = new JPasswordField(7);
-        passtxt.setBounds(120,172,230,25);
+        passtxt.setBounds(120,132,230,25);
         pnlPanel2.add(passtxt);
         
         nama = new JLabel("Nama : ");
-        nama.setBounds(30,210,110,30);
+        nama.setBounds(30,170,110,30);
         nama.setFont(new Font("Arial",Font.BOLD,15));
         pnlPanel2.add(nama);
         
         namatxt = new JTextField(7);
-        namatxt.setBounds(120,212,230,25);
+        namatxt.setBounds(120,172,230,25);
         pnlPanel2.add(namatxt);
         
         nohp = new JLabel("No HP : ");
-        nohp.setBounds(30,250,110,30);
+        nohp.setBounds(30,210,110,30);
         nohp.setFont(new Font("Arial",Font.BOLD,15));
         pnlPanel2.add(nohp);
         
         nohptxt = new JTextField(7);
-        nohptxt.setBounds(120,252,230,25);
+        nohptxt.setBounds(120,212,230,25);
         pnlPanel2.add(nohptxt);
         
         ttl = new JLabel("TTL : ");
-        ttl.setBounds(30,290,110,30);
+        ttl.setBounds(30,250,110,30);
         ttl.setFont(new Font("Arial",Font.BOLD,15));
         pnlPanel2.add(ttl);
         
         ttltxt = new JTextField(7);
-        ttltxt.setBounds(120,292,230,25);
+        ttltxt.setBounds(120,252,230,25);
         pnlPanel2.add(ttltxt);
         
         email = new JLabel("Email : ");
-        email.setBounds(30,330,110,30);
+        email.setBounds(30,290,110,30);
         email.setFont(new Font("Arial",Font.BOLD,15));
         pnlPanel2.add(email);
         
         emailtxt = new JTextField(7);
-        emailtxt.setBounds(120,332,230,25);
+        emailtxt.setBounds(120,292,230,25);
         pnlPanel2.add(emailtxt);
         
-        login = new JButton("Login");
-        login.setPreferredSize(new Dimension(100, 20));
-        login.setBounds(160,390,100,30);
-        login.setLayout(null);
-        login.setFont(new Font("Arial",Font.BOLD,15));
-        login.addMouseListener(new MouseAdapter(){
+        btnUpdate = new JButton("Update");
+        btnUpdate.setPreferredSize(new Dimension(100, 20));
+        btnUpdate.setBounds(160,330,100,30);
+        btnUpdate.setLayout(null);
+        btnUpdate.setFont(new Font("Arial",Font.BOLD,15));
+        btnUpdate.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent me) {
                 try {
-                    LoginClick();
-                } catch (IOException ex) {
-                    Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            
-        });
-        pnlPanel2.add(login);
-        
-        rgs = new JButton("Register");
-        rgs.setBounds(30,390,100,30);
-        rgs.setPreferredSize(new Dimension (100,20));
-        rgs.setFont(new Font("Arial",Font.BOLD,15));
-        rgs.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                try { 
                     btnOkOnClick();
                 } catch (IOException ex) {
-                    Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        } );
-        pnlPanel2.add(rgs);
+            
+        });
+        pnlPanel2.add(btnUpdate);
         
-        hm = new JButton("Home");
-        hm.setBounds(290,390,100,30);
-        hm.setPreferredSize(new Dimension (100,20));
-        hm.setFont(new Font("Arial",Font.BOLD,15));
-        hm.addMouseListener(new MouseAdapter(){
+        btnHm = new JButton("Home");
+        btnHm.setBounds(30,330,100,30);
+        btnHm.setPreferredSize(new Dimension (100,20));
+        btnHm.setFont(new Font("Arial",Font.BOLD,15));
+        btnHm.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent me) {
                 try {
-                    Home();
+                    Home2();
                 } catch (IOException ex) {
                     Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             
         });
-        pnlPanel2.add(hm);
+        pnlPanel2.add(btnHm);
     }
-    public void Home() throws IOException{
-        new Home().setVisible(true);
+    public void Home2() throws IOException{
+        new Home2(id_lgn).setVisible(true);
         this.setVisible(false);
     }
     
-    public void LoginClick() throws IOException{
-        new LoginForm().setVisible(true);
-        this.setVisible(false);
-    }
     private Image resizeImage(String url,int x,int y) throws IOException{
         Image dimg = null;
         try {
@@ -200,17 +166,12 @@ public class Register extends JFrame {
     
     private void btnOkOnClick() throws IOException
     {
-        String uname = idtxt.getText().trim();
         String pass = passtxt.getText().trim();
         String namaa = namatxt.getText().trim();
         String no_hp = nohptxt.getText().trim();
         String lahir = ttltxt.getText().trim();
         String emaill = emailtxt.getText().trim();
 
-        if(uname.length() == 0){
-            JOptionPane.showMessageDialog(this, "Please Enter Your Username","Validation Failed",JOptionPane.WARNING_MESSAGE);
-            return;
-        }
         if(pass.length() == 0){
             JOptionPane.showMessageDialog(this, "Please Enter Your Password","Validation Failed",JOptionPane.WARNING_MESSAGE);
             return;
@@ -232,33 +193,20 @@ public class Register extends JFrame {
             return;
         }
         
-        int i;
-        boolean cek = true;
-        for(i = 0; i < listUser.size(); i++){
-            if(uname.equals(listUser.get(i).id_lgn)){
-                JOptionPane.showMessageDialog(this,"Id Telah Digunakan Silahkan Ganti","Fail",JOptionPane.INFORMATION_MESSAGE);
-                new Register().setVisible(true);
-                this.setVisible(false);
-                cek = false;
-                return;
-            } 
-        }
-        
-        if(uname.length() != 0 && pass.length() != 0 && namaa.length() != 0 && no_hp.length() != 0 && lahir.length() != 0 && emaill.length() != 0 && cek == true){
-            int confirm = JOptionPane.showConfirmDialog(null, "Tambah Data?", "Konfirmasi", JOptionPane.YES_OPTION);
+        if(pass.length() != 0 && namaa.length() != 0 && no_hp.length() != 0 && lahir.length() != 0 && emaill.length() != 0){
+            int confirm = JOptionPane.showConfirmDialog(null, "Ubah Data?", "Konfirmasi", JOptionPane.YES_OPTION);
             if(confirm == JOptionPane.YES_OPTION){
-                String id = idtxt.getText() + "";
                 String nama = namatxt.getText() + "";
                 String tlp = nohptxt.getText() + "";
                 String tl = ttltxt.getText() + "";
                 String emaila = emailtxt.getText() + "";
                 String passs = passtxt.getText() + "";
 
-                User u = new User(id,nama,tlp,tl,emaill,pass) {};
+                User u = new User(nama,tlp,tl,emaill,pass) {};
                 JOptionPane.showMessageDialog(null, "Data Sukses DiSubmit");
-                RegisterDao.addLogin(u);
+                UpdateUserDao.addUpdate(u, id_lgn);
                 try {
-                    LoginClick();
+                    Home2();
                 } catch (IOException ex) {
                     Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -282,7 +230,6 @@ public class Register extends JFrame {
     private JTextField nohptxt;
     private JTextField ttltxt;
     private JTextField emailtxt;
-    private JButton login;
-    private JButton rgs;
-    private JButton hm;
+    private JButton btnUpdate;
+    private JButton btnHm;
 }
