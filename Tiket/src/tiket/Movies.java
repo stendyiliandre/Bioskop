@@ -9,17 +9,61 @@ package tiket;
  *
  * @author Kevin Suwanda, Stendy Iliandre, William Johann
  */
-public class Movies implements Info {
-    public int id;
-    public String judul;
-    public String director;
-    public String durasi;
-    public String genre;
-    public String pemain;
-    public String subtitle;
+public class Movies{
+    public  int id;
+    private String judul;
+    private String durasi;
+    private String genre;
+    private String directory;
+    
 
-    @Override
-    public void getInfo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Movies() {
+       
+    }
+    public Movies(String movi, String drsa, String genn, String dicc) {
+        this.judul = movi;
+        this.durasi = drsa;
+        this.genre = genn;
+        this.directory = dicc;
+    }
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setJudul(String judul) {
+        this.judul = judul;
+    }
+
+    public void setDurasi(String durasi) {
+        this.durasi = durasi;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public void setDirectory(String directory) {
+        this.directory = directory;
+    }
+
+    public String getDurasi() {
+        return durasi;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public String getJudul() {
+        return judul;
+    }
+
+    public String getDirectory() {
+        return directory;
     }
 }
